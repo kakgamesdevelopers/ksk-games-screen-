@@ -1,0 +1,1507 @@
+<!-- Made by KSK Games -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- Made by KSK Games -->
+<title>KSK Games Screen Recorder 6K HD - Made by KSK Games</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Made by KSK Games -->
+<style>
+/* Made by KSK Games */
+:root{--bg:#050510;--bg2:#0a0a18;--card:#0f0f22;--border:#1c1c3a;--fg:#f0f0ff;--muted:#7878a0;--accent:#00ff88;--accent2:#00cc6a;--glow:rgba(0,255,136,0.18);--danger:#ff2244;--warn:#ffbb00;--purple:#bb77ff;--cyan:#00ddff}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-text-size-adjust:100%}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:3px}
+
+/* Made by KSK Games - HIGH VISIBILITY BG */
+.bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,136,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+.bg-glow{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
+.bg-glow-1{top:-120px;right:-80px;width:500px;height:500px;background:var(--accent);opacity:.14}
+.bg-glow-2{bottom:-180px;left:-120px;width:450px;height:450px;background:var(--danger);opacity:.1}
+.bg-glow-3{top:35%;left:45%;width:600px;height:600px;background:var(--purple);opacity:.07;transform:translate(-50%,-50%)}
+.bg-glow-4{top:10%;left:10%;width:300px;height:300px;background:var(--cyan);opacity:.05}
+
+/* Made by KSK Games - FLOATING OVERLAY */
+.ksk-overlay{position:fixed;z-index:2147483647;bottom:20px;right:20px;user-select:none;-webkit-user-select:none;touch-action:none;font-family:'Orbitron',monospace;max-width:calc(100vw - 20px)}
+.ksk-overlay.collapsed .ksk-cam-panel,.ksk-overlay.collapsed .ksk-timer-bar{display:none}
+.ksk-brand{background:linear-gradient(135deg,#0c0c20 0%,#161638 100%);border:2px solid rgba(0,255,136,0.5);border-radius:16px;padding:10px 16px;display:flex;align-items:center;gap:10px;cursor:grab;box-shadow:0 8px 40px rgba(0,0,0,0.8),0 0 30px rgba(0,255,136,0.2),inset 0 1px 0 rgba(255,255,255,0.06);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);transition:box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
+.ksk-brand::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,255,136,0.05),transparent);animation:brandShimmer 3s ease-in-out infinite}
+@keyframes brandShimmer{0%,100%{transform:translateX(-100%)}50%{transform:translateX(100%)}}
+.ksk-brand:active{cursor:grabbing}
+.ksk-brand.recording{border-color:rgba(255,34,68,0.7);box-shadow:0 8px 40px rgba(0,0,0,0.8),0 0 35px rgba(255,34,68,0.35)}
+.ksk-brand.recording .ksk-rec-dot{display:block}
+.ksk-logo-mini{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),#00aa55);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#000;box-shadow:0 0 15px rgba(0,255,136,0.5);flex-shrink:0;position:relative;z-index:1}
+.ksk-brand-text{display:flex;flex-direction:column;position:relative;z-index:1;line-height:1.2}
+.ksk-brand-name{font-size:.72rem;font-weight:900;color:var(--fg);letter-spacing:2px}
+.ksk-brand-name span{color:var(--accent)}
+.ksk-brand-sub{font-size:.38rem;color:var(--muted);letter-spacing:1px;font-weight:400}
+.ksk-rec-dot{display:none;width:10px;height:10px;background:var(--danger);border-radius:50%;animation:kskRecBlink 1s ease-in-out infinite;flex-shrink:0;position:relative;z-index:1}
+@keyframes kskRecBlink{0%,100%{opacity:1;box-shadow:0 0 8px var(--danger)}50%{opacity:.15;box-shadow:none}}
+.ksk-collapse-btn{position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--muted);font-size:.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2}
+.ksk-collapse-btn:hover{background:rgba(255,255,255,0.12);color:var(--fg)}
+.ksk-timer-bar{margin-top:8px;background:linear-gradient(135deg,#0c0c20,#161638);border:1px solid var(--border);border-radius:12px;padding:8px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 25px rgba(0,0,0,0.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.ksk-timer{font-size:.82rem;font-weight:700;color:var(--danger);letter-spacing:1.5px;min-width:75px;text-shadow:0 0 10px rgba(255,34,68,0.4)}
+.ksk-timer.not-recording{color:var(--muted);text-shadow:none}
+.ksk-audio-indicators{display:flex;gap:6px;align-items:center}
+.ksk-audio-ind{font-size:.48rem;padding:3px 8px;border-radius:6px;display:flex;align-items:center;gap:3px;font-weight:700;letter-spacing:.5px}
+.ksk-audio-ind.mic{background:rgba(0,255,136,0.12);color:var(--accent);border:1px solid rgba(0,255,136,0.3);text-shadow:0 0 6px rgba(0,255,136,0.3)}
+.ksk-audio-ind.sys{background:rgba(187,119,255,0.12);color:var(--purple);border:1px solid rgba(187,119,255,0.3);text-shadow:0 0 6px rgba(187,119,255,0.3)}
+.ksk-fps-badge-overlay{font-size:.45rem;padding:3px 8px;border-radius:6px;background:rgba(0,221,255,0.12);color:var(--cyan);border:1px solid rgba(0,221,255,0.3);font-weight:700;letter-spacing:.5px;text-shadow:0 0 6px rgba(0,221,255,0.3)}
+.ksk-controls{margin-top:8px;display:flex;gap:6px}
+.ksk-ctrl-btn{flex:1;padding:12px 6px;border:none;border-radius:12px;font-family:'Orbitron',monospace;font-size:.55rem;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .25s;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative;overflow:hidden}
+.ksk-ctrl-btn i{font-size:.9rem}
+.ksk-ctrl-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);opacity:0;transition:opacity .2s}
+.ksk-ctrl-btn:hover::before{opacity:1}
+.ksk-ctrl-btn:active{transform:scale(.93)}
+.ksk-btn-start{background:linear-gradient(135deg,var(--danger),#cc1133);color:#fff;box-shadow:0 4px 18px rgba(255,34,68,0.4)}
+.ksk-btn-start:hover{box-shadow:0 4px 30px rgba(255,34,68,0.6)}
+.ksk-btn-start.is-recording{background:linear-gradient(135deg,#ff5522,var(--danger));animation:kskRecPulse 1.2s ease-in-out infinite}
+@keyframes kskRecPulse{0%,100%{box-shadow:0 4px 18px rgba(255,34,68,0.4)}50%{box-shadow:0 4px 35px rgba(255,34,68,0.7)}}
+.ksk-btn-pause{background:rgba(255,187,0,0.14);color:var(--warn);border:1px solid rgba(255,187,0,0.3)}
+.ksk-btn-pause:hover{background:rgba(255,187,0,0.22);box-shadow:0 0 18px rgba(255,187,0,0.2)}
+.ksk-btn-pause:disabled{opacity:.2;cursor:not-allowed;transform:none!important}
+.ksk-btn-stop{background:rgba(255,255,255,0.06);color:var(--fg);border:1px solid var(--border)}
+.ksk-btn-stop:hover{border-color:var(--muted);background:rgba(255,255,255,0.1)}
+.ksk-btn-stop:disabled{opacity:.2;cursor:not-allowed;transform:none!important}
+.ksk-cam-panel{margin-top:8px;background:linear-gradient(135deg,#0c0c20,#161638);border:2px solid rgba(0,255,136,0.4);border-radius:14px;overflow:hidden;box-shadow:0 8px 35px rgba(0,0,0,0.7),0 0 20px rgba(0,255,136,0.12);position:relative}
+.ksk-cam-panel.no-cam{border-color:var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.5)}
+.ksk-cam-video{width:100%;height:auto;display:block;transform:scaleX(-1);background:#000}
+.ksk-cam-placeholder{width:220px;height:124px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);gap:6px}
+.ksk-cam-placeholder i{font-size:1.5rem;opacity:.3}
+.ksk-cam-placeholder span{font-size:.48rem;opacity:.5;letter-spacing:1px}
+.ksk-cam-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.85));padding:18px 10px 6px;display:flex;align-items:center;justify-content:space-between}
+.ksk-cam-label-text{font-size:.45rem;color:var(--accent);font-weight:700;letter-spacing:2px;text-shadow:0 0 8px rgba(0,255,136,0.4)}
+.ksk-cam-hd-badge{font-size:.4rem;background:linear-gradient(135deg,var(--accent),#00aa55);color:#000;padding:2px 10px;border-radius:20px;font-weight:900;letter-spacing:1px}
+
+/* Made by KSK Games - HEADER */
+header{position:relative;z-index:10;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);background:rgba(5,5,16,.9)}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#00aa55);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#000;font-weight:900;box-shadow:0 0 28px rgba(0,255,136,.4);animation:logoPulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes logoPulse{0%,100%{box-shadow:0 0 28px rgba(0,255,136,.4)}50%{box-shadow:0 0 45px rgba(0,255,136,.65)}}
+.logo-text{font-family:'Orbitron',monospace;font-weight:900;font-size:1.15rem;letter-spacing:2px}
+.logo-text span{color:var(--accent)}
+.logo-sub{font-size:.48rem;color:var(--muted);letter-spacing:1px;margin-top:-2px}
+.badge{font-family:'Orbitron',monospace;font-size:.5rem;padding:4px 12px;background:linear-gradient(135deg,var(--accent),#00aa55);color:#000;font-weight:700;border-radius:20px;letter-spacing:1px;white-space:nowrap}
+.header-right{display:flex;align-items:center;gap:16px}
+.header-stat{font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.header-stat i{color:var(--accent);font-size:.6rem}
+
+/* Made by KSK Games - MAIN LAYOUT */
+main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16px 20px}
+.app-grid{display:grid;grid-template-columns:320px 1fr;gap:20px}
+.sidebar{display:flex;flex-direction:column;gap:14px}
+.main-area{display:flex;flex-direction:column;gap:16px}
+
+/* Made by KSK Games - PANELS */
+.panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;transition:border-color .3s,box-shadow .3s}
+.panel:hover{border-color:rgba(0,255,136,.25);box-shadow:0 0 20px rgba(0,255,136,.05)}
+.panel-title{font-family:'Orbitron',monospace;font-size:.65rem;font-weight:700;letter-spacing:2px;color:var(--muted);margin-bottom:14px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.panel-title i{color:var(--accent);font-size:.7rem}
+.form-group{margin-bottom:12px}
+.form-group:last-child{margin-bottom:0}
+.form-group label{display:block;font-size:.72rem;font-weight:600;color:var(--muted);margin-bottom:5px;letter-spacing:.5px}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--fg);font-family:'Poppins',sans-serif;font-size:.82rem;outline:none;transition:all .3s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+.form-group textarea{resize:vertical;min-height:60px}
+.form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2300ff88' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.form-group select option{background:var(--bg2);color:var(--fg)}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(28,28,58,.5)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-label{font-size:.78rem;font-weight:500}
+.toggle{position:relative;width:44px;height:24px;cursor:pointer;flex-shrink:0}
+.toggle input{display:none}
+.toggle .slider{position:absolute;inset:0;background:var(--bg);border:1px solid var(--border);border-radius:12px;transition:all .3s}
+.toggle .slider::before{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:var(--muted);top:2px;left:2px;transition:all .3s}
+.toggle input:checked+.slider{background:rgba(0,255,136,.15);border-color:var(--accent)}
+.toggle input:checked+.slider::before{transform:translateX(20px);background:var(--accent);box-shadow:0 0 10px rgba(0,255,136,.6)}
+
+/* Made by KSK Games - FPS / RES HIGHLIGHT BADGES */
+.fps-highlight{display:inline-block;font-family:'Orbitron',monospace;font-size:.6rem;padding:2px 8px;border-radius:6px;margin-left:6px;font-weight:700;vertical-align:middle;letter-spacing:.5px}
+.fps-highlight.ultra{background:rgba(0,221,255,0.15);color:var(--cyan);border:1px solid rgba(0,221,255,0.3);text-shadow:0 0 6px rgba(0,221,255,0.3)}
+.fps-highlight.high{background:rgba(0,255,136,0.12);color:var(--accent);border:1px solid rgba(0,255,136,0.25)}
+.res-highlight{display:inline-block;font-family:'Orbitron',monospace;font-size:.55rem;padding:2px 8px;border-radius:6px;margin-left:6px;font-weight:700;vertical-align:middle;letter-spacing:.5px;background:rgba(255,187,0,0.12);color:var(--warn);border:1px solid rgba(255,187,0,0.25);text-shadow:0 0 6px rgba(255,187,0,0.3)}
+
+/* Made by KSK Games - PREVIEW */
+.preview-wrap{position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;min-height:320px;display:flex;align-items:center;justify-content:center}
+.preview-wrap.active{border-color:var(--accent);box-shadow:0 0 35px var(--glow)}
+.preview-wrap.recording{border-color:var(--danger);box-shadow:0 0 35px rgba(255,34,68,.25);animation:recBorder 1.5s ease-in-out infinite}
+@keyframes recBorder{0%,100%{box-shadow:0 0 35px rgba(255,34,68,.25)}50%{box-shadow:0 0 55px rgba(255,34,68,.4)}}
+#previewArea{width:100%;height:340px;display:flex;align-items:center;justify-content:center;position:relative}
+#previewArea video{max-width:100%;max-height:100%;border-radius:8px;object-fit:contain}
+.preview-placeholder{text-align:center;color:var(--muted);padding:20px}
+.preview-placeholder i{font-size:3rem;margin-bottom:14px;opacity:.4;display:block}
+.preview-placeholder p{font-size:.85rem}
+.rec-indicator{position:absolute;top:14px;left:14px;display:none;align-items:center;gap:8px;background:rgba(0,0,0,.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:8px 16px;border-radius:10px;z-index:5;border:1px solid rgba(255,34,68,0.3)}
+.rec-indicator.visible{display:flex}
+.rec-dot{width:12px;height:12px;background:var(--danger);border-radius:50%;animation:recBlink 1s ease-in-out infinite;box-shadow:0 0 8px var(--danger)}
+@keyframes recBlink{0%,100%{opacity:1;box-shadow:0 0 8px var(--danger)}50%{opacity:.15;box-shadow:none}}
+.rec-time{font-family:'Orbitron',monospace;font-size:.85rem;color:var(--danger);font-weight:700;text-shadow:0 0 10px rgba(255,34,68,0.5)}
+.res-badge{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 14px;border-radius:10px;font-family:'Orbitron',monospace;font-size:.68rem;color:var(--accent);font-weight:700;z-index:5;display:none;border:1px solid rgba(0,255,136,0.3);text-shadow:0 0 8px rgba(0,255,136,0.4)}
+.res-badge.visible{display:flex;align-items:center;gap:6px}
+.fps-live-badge{font-size:.5rem;padding:2px 6px;border-radius:4px;background:rgba(0,221,255,0.2);color:var(--cyan);font-weight:700;border:1px solid rgba(0,221,255,0.3)}
+.face-preview{position:absolute;bottom:14px;right:14px;width:140px;height:105px;border-radius:12px;border:2px solid var(--accent);overflow:hidden;z-index:5;box-shadow:0 0 25px var(--glow);display:none}
+.face-preview.visible{display:block}
+.face-preview video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.face-label{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font-size:.5rem;background:rgba(0,0,0,.75);color:var(--accent);padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:1px}
+
+/* Made by KSK Games - WATERMARK OVERLAY (CSS preview) */
+.watermark-overlay{position:absolute;bottom:14px;left:14px;font-family:'Orbitron',monospace;font-size:.65rem;font-weight:700;color:rgba(0,255,136,0.75);text-shadow:0 0 10px rgba(0,0,0,0.9),0 0 20px rgba(0,0,0,0.7),1px 1px 3px rgba(0,0,0,1);letter-spacing:2px;z-index:5;display:none;pointer-events:none;animation:watermarkPulse 2s ease-in-out infinite}
+.watermark-overlay.visible{display:block}
+@keyframes watermarkPulse{0%,100%{opacity:.75}50%{opacity:1}}
+
+/* Made by KSK Games - CONTROLS BAR */
+.controls-bar{display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:16px;flex-wrap:wrap}
+.ctrl-btn{display:flex;align-items:center;gap:8px;padding:12px 22px;border:none;border-radius:12px;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.ctrl-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);opacity:0;transition:opacity .3s}
+.ctrl-btn:hover::before{opacity:1}
+.ctrl-btn:active{transform:scale(.95)}
+.btn-record{background:linear-gradient(135deg,var(--danger),#cc1133);color:#fff;box-shadow:0 4px 22px rgba(255,34,68,.35)}
+.btn-record:hover{box-shadow:0 4px 35px rgba(255,34,68,.55)}
+.btn-record.recording{background:linear-gradient(135deg,#ff5522,var(--danger));animation:recPulse 1s ease-in-out infinite}
+@keyframes recPulse{0%,100%{box-shadow:0 4px 22px rgba(255,34,68,.35)}50%{box-shadow:0 4px 40px rgba(255,34,68,.65)}}
+.btn-stop{background:var(--bg2);color:var(--fg);border:1px solid var(--border)}
+.btn-stop:hover{border-color:var(--muted)}
+.btn-stop:disabled{opacity:.25;cursor:not-allowed;transform:none!important}
+.btn-pause{background:var(--bg2);color:var(--warn);border:1px solid rgba(255,187,0,.3)}
+.btn-pause:hover{border-color:var(--warn);box-shadow:0 0 22px rgba(255,187,0,.15)}
+.btn-pause:disabled{opacity:.25;cursor:not-allowed;transform:none!important}
+.ctrl-divider{width:1px;height:36px;background:var(--border)}
+
+/* Made by KSK Games - STATUS BAR */
+.status-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;font-size:.72rem;color:var(--muted);flex-wrap:wrap;gap:8px}
+.status-item{display:flex;align-items:center;gap:6px}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--muted)}
+.status-dot.ready{background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.status-dot.rec{background:var(--danger);box-shadow:0 0 8px var(--danger);animation:recBlink 1s infinite}
+.status-dot.paused{background:var(--warn);box-shadow:0 0 8px var(--warn)}
+
+/* Made by KSK Games - LIBRARY */
+.library-section{margin-top:4px}
+.library-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.library-title{font-family:'Orbitron',monospace;font-size:.65rem;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.library-title i{color:var(--accent)}
+.lib-count{font-family:'Orbitron',monospace;font-size:.55rem;background:var(--bg2);border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--accent)}
+.search-box{position:relative;margin-bottom:14px}
+.search-box input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 14px 10px 36px;color:var(--fg);font-family:'Poppins',sans-serif;font-size:.8rem;outline:none;transition:all .3s}
+.search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+.search-box i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.78rem}
+.video-list{display:flex;flex-direction:column;gap:10px;max-height:320px;overflow-y:auto;padding-right:4px}
+.video-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px;transition:all .3s;cursor:default}
+.video-card:hover{border-color:rgba(0,255,136,.3);transform:translateX(4px);box-shadow:0 0 15px rgba(0,255,136,.06)}
+.video-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
+.video-card-name{font-weight:600;font-size:.85rem;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+.video-card-date{font-size:.62rem;color:var(--muted);white-space:nowrap}
+.video-card-title{font-size:.72rem;color:var(--accent);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.video-card-desc{font-size:.68rem;color:var(--muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:8px}
+.video-card-meta{display:flex;align-items:center;gap:12px;font-size:.62rem;color:var(--muted);margin-bottom:10px;flex-wrap:wrap}
+.video-card-meta span{display:flex;align-items:center;gap:4px}
+.video-card-meta i{font-size:.58rem}
+.video-card-ksk-credit{font-size:.55rem;color:var(--accent);font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:4px;margin-bottom:8px;font-family:'Orbitron',monospace;text-shadow:0 0 6px rgba(0,255,136,0.3)}
+.video-card-actions{display:flex;gap:8px;flex-wrap:wrap}
+.vc-btn{padding:6px 14px;border:none;border-radius:8px;font-family:'Poppins',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:5px}
+.vc-btn:hover{transform:translateY(-1px)}
+.vc-play{background:rgba(0,255,136,.1);color:var(--accent);border:1px solid rgba(0,255,136,.25)}
+.vc-play:hover{background:rgba(0,255,136,.2)}
+.vc-dl{background:rgba(255,187,0,.1);color:var(--warn);border:1px solid rgba(255,187,0,.25)}
+.vc-dl:hover{background:rgba(255,187,0,.2)}
+.vc-del{background:rgba(255,34,68,.08);color:var(--danger);border:1px solid rgba(255,34,68,.18)}
+.vc-del:hover{background:rgba(255,34,68,.2)}
+.empty-state{text-align:center;padding:40px 20px;color:var(--muted)}
+.empty-state i{font-size:2.5rem;opacity:.25;margin-bottom:12px;display:block}
+.empty-state p{font-size:.8rem}
+.empty-state .ksk-credit-empty{font-size:.6rem;color:var(--accent);margin-top:8px;font-family:'Orbitron',monospace;letter-spacing:1px;opacity:.7}
+
+/* Made by KSK Games - TOAST */
+.toast-container{position:fixed;top:16px;right:16px;z-index:2147483646;display:flex;flex-direction:column;gap:10px;pointer-events:none;max-width:calc(100vw - 20px)}
+.toast{padding:14px 18px;border-radius:12px;font-size:.8rem;font-weight:500;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid;transform:translateX(120%);transition:transform .4s cubic-bezier(.175,.885,.32,1.275);display:flex;align-items:center;gap:10px;max-width:380px;box-shadow:0 10px 40px rgba(0,0,0,.5);pointer-events:auto}
+.toast.show{transform:translateX(0)}
+.toast-success{background:rgba(0,255,136,.12);border-color:rgba(0,255,136,.3);color:var(--accent)}
+.toast-error{background:rgba(255,34,68,.12);border-color:rgba(255,34,68,.3);color:var(--danger)}
+.toast-info{background:rgba(100,100,220,.12);border-color:rgba(100,100,220,.3);color:#9999ee}
+
+/* Made by KSK Games - MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.visible{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;font-size:1rem;z-index:2}
+.modal-close:hover{color:var(--danger);border-color:var(--danger)}
+.modal video{width:100%;border-radius:12px;background:#000;max-height:55vh}
+.modal-info{margin-top:14px;padding:14px;background:var(--bg2);border-radius:12px;border:1px solid var(--border)}
+.modal-info h3{font-size:.95rem;font-weight:700;margin-bottom:4px}
+.modal-info .mi-title{font-size:.82rem;color:var(--accent);margin-bottom:6px}
+.modal-info p{font-size:.78rem;color:var(--muted);line-height:1.5}
+.modal-info .mi-meta{display:flex;gap:14px;margin-top:10px;font-size:.68rem;color:var(--muted);flex-wrap:wrap}
+.modal-info .mi-meta span{display:flex;align-items:center;gap:4px}
+.modal-ksk-credit{font-size:.6rem;color:var(--accent);font-weight:700;letter-spacing:1px;margin-top:10px;font-family:'Orbitron',monospace;display:flex;align-items:center;gap:6px;text-shadow:0 0 6px rgba(0,255,136,0.3)}
+
+/* Made by KSK Games - TIPS BAR */
+.tips-bar{display:flex;gap:12px;flex-wrap:wrap;padding:12px 16px;background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.1);border-radius:12px}
+.tip{display:flex;align-items:center;gap:6px;font-size:.68rem;color:var(--muted)}
+.tip i{color:var(--accent);font-size:.6rem}
+.tip.ksk-tip{color:var(--accent);font-weight:600;font-family:'Orbitron',monospace;font-size:.55rem;letter-spacing:1px}
+
+/* Made by KSK Games - SHORTCUT HINT */
+.shortcut-hint{position:absolute;bottom:14px;left:14px;font-size:.55rem;color:var(--muted);background:rgba(0,0,0,.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:5px 10px;border-radius:6px;z-index:5;display:flex;gap:10px;opacity:.7}
+.shortcut-hint kbd{background:var(--bg2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-family:'Orbitron',monospace;font-size:.5rem;color:var(--accent)}
+
+/* Made by KSK Games - FOOTER */
+.ksk-footer{position:relative;z-index:10;text-align:center;padding:24px 16px;font-family:'Orbitron',monospace;font-size:.55rem;color:var(--muted);letter-spacing:2px;border-top:1px solid var(--border);margin-top:24px;background:linear-gradient(180deg,transparent,rgba(0,255,136,0.02))}
+.ksk-footer span{color:var(--accent);font-weight:900;text-shadow:0 0 10px rgba(0,255,136,0.4)}
+.ksk-footer .ksk-footer-icon{font-size:.7rem;color:var(--accent);margin-right:6px}
+
+/* Made by KSK Games - MOBILE TOGGLE SIDEBAR */
+.mobile-sidebar-toggle{display:none;position:fixed;bottom:90px;left:14px;z-index:999;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#00aa55);color:#000;border:none;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 20px rgba(0,255,136,.4);align-items:center;justify-content:center;transition:all .3s}
+.mobile-sidebar-toggle:active{transform:scale(.9)}
+
+/* Hidden watermark canvas - Made by KSK Games */
+#watermarkCanvas{display:none}
+
+/* Made by KSK Games - RESPONSIVE */
+@media(max-width:1024px){
+  .app-grid{grid-template-columns:1fr}
+  .sidebar{order:2}
+  .main-area{order:1}
+  .sidebar{display:none}
+  .sidebar.mobile-open{display:flex;position:fixed;inset:0;z-index:998;background:rgba(5,5,16,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow-y:auto;padding:16px;animation:fadeUp .3s ease-out}
+  .mobile-sidebar-toggle{display:flex}
+  #previewArea{height:260px}
+  .header-right .header-stat:nth-child(2){display:none}
+}
+@media(max-width:600px){
+  header{padding:10px 12px;gap:8px}
+  .logo-text{font-size:.95rem}
+  .logo-icon{width:36px;height:36px;font-size:16px}
+  .badge{font-size:.42rem;padding:3px 8px}
+  main{padding:12px 10px 100px}
+  .controls-bar{gap:8px;padding:12px 10px}
+  .ctrl-btn{padding:10px 14px;font-size:.75rem}
+  .ctrl-divider{display:none}
+  .face-preview{width:100px;height:75px}
+  .shortcut-hint{display:none}
+  .ksk-overlay{right:8px!important;bottom:8px!important}
+  .ksk-cam-panel video,.ksk-cam-placeholder{width:160px!important;height:90px!important}
+  .ksk-brand{padding:8px 12px}
+  .ksk-logo-mini{width:30px;height:30px;font-size:12px}
+  .ksk-brand-name{font-size:.6rem}
+  .ksk-ctrl-btn{padding:10px 4px;font-size:.48rem}
+  .ksk-ctrl-btn i{font-size:.75rem}
+  .panel{padding:14px}
+  #previewArea{height:200px}
+  .preview-wrap{min-height:200px}
+  .tips-bar{gap:8px;padding:10px 12px}
+  .tip{font-size:.6rem}
+  .video-card-actions{gap:6px}
+  .vc-btn{padding:5px 10px;font-size:.62rem}
+  .toast{font-size:.72rem;padding:10px 14px;max-width:300px}
+  .watermark-overlay{font-size:.5rem;letter-spacing:1px}
+  .ksk-footer{font-size:.45rem;padding:16px 10px}
+}
+@media(max-width:380px){
+  .logo-sub{display:none}
+  .badge{display:none}
+  .ksk-cam-panel video,.ksk-cam-placeholder{width:130px!important;height:73px!important}
+  .ksk-timer-bar{padding:6px 10px}
+  .ksk-timer{font-size:.7rem;min-width:60px}
+}
+
+/* Made by KSK Games - ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.panel,.preview-wrap,.controls-bar,.status-bar,.library-section,.tips-bar{animation:fadeUp .6s ease-out both}
+.panel:nth-child(2){animation-delay:.1s}
+.preview-wrap{animation-delay:.15s}
+.controls-bar{animation-delay:.2s}
+.status-bar{animation-delay:.25s}
+.library-section{animation-delay:.3s}
+.tips-bar{animation-delay:.35s}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Made by KSK Games -->
+<div class="bg-grid"></div>
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+<div class="bg-glow bg-glow-3"></div>
+<div class="bg-glow bg-glow-4"></div>
+
+<!-- Hidden canvas for burning watermark into recorded video - Made by KSK Games -->
+<canvas id="watermarkCanvas"></canvas>
+
+<!-- MOBILE SIDEBAR TOGGLE - Made by KSK Games -->
+<button class="mobile-sidebar-toggle" id="mobileSidebarBtn" aria-label="Toggle settings"><i class="fas fa-cog"></i></button>
+
+<!-- ===== FLOATING OVERLAY - Made by KSK Games ===== -->
+<div class="ksk-overlay" id="kskOverlay">
+  <div class="ksk-brand" id="kskBrand">
+    <div class="ksk-logo-mini">K</div>
+    <div class="ksk-brand-text">
+      <div class="ksk-brand-name">KSK <span>GAMES</span></div>
+      <div class="ksk-brand-sub">6K HD - Made by KSK Games</div>
+    </div>
+    <div class="ksk-rec-dot" id="kskRecDot"></div>
+    <button class="ksk-collapse-btn" id="kskCollapseBtn" title="Toggle panel" aria-label="Toggle panel"><i class="fas fa-chevron-down"></i></button>
+  </div>
+  <div class="ksk-timer-bar" id="kskTimerBar">
+    <div class="ksk-timer not-recording" id="kskTimer">00:00:00</div>
+    <div class="ksk-fps-badge-overlay" id="kskFpsBadge" style="display:none">120 FPS</div>
+    <div class="ksk-audio-indicators" id="kskAudioInd">
+      <div class="ksk-audio-ind mic" id="kskMicInd" style="display:none"><i class="fas fa-microphone"></i> MIC</div>
+      <div class="ksk-audio-ind sys" id="kskSysInd" style="display:none"><i class="fas fa-volume-up"></i> SYS</div>
+    </div>
+  </div>
+  <div class="ksk-controls">
+    <button class="ksk-ctrl-btn ksk-btn-start" id="kskBtnStart" aria-label="Start recording">
+      <i class="fas fa-circle"></i><span>START</span>
+    </button>
+    <button class="ksk-ctrl-btn ksk-btn-pause" id="kskBtnPause" disabled aria-label="Pause recording">
+      <i class="fas fa-pause"></i><span>PAUSE</span>
+    </button>
+    <button class="ksk-ctrl-btn ksk-btn-stop" id="kskBtnStop" disabled aria-label="Stop recording">
+      <i class="fas fa-stop"></i><span>STOP</span>
+    </button>
+  </div>
+  <div class="ksk-cam-panel no-cam" id="kskCamPanel">
+    <div class="ksk-cam-placeholder" id="kskCamPlaceholder">
+      <i class="fas fa-video-slash"></i><span>6K HD CAMERA</span>
+    </div>
+    <video class="ksk-cam-video" id="kskCamVideo" autoplay muted playsinline style="display:none"></video>
+    <div class="ksk-cam-label">
+      <span class="ksk-cam-label-text">FACE CAM</span>
+      <span class="ksk-cam-hd-badge">6K HD</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER - Made by KSK Games ===== -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">K</div>
+    <div>
+      <div class="logo-text">KSK <span>GAMES</span></div>
+      <div class="logo-sub">SCREEN RECORDER - Made by KSK Games</div>
+    </div>
+  </div>
+  <div class="badge">6K HD READY</div>
+  <div class="header-right">
+    <div class="header-stat"><i class="fas fa-circle" style="color:var(--accent)"></i> Ready</div>
+    <div class="header-stat"><i class="fas fa-microchip"></i> <span id="browserInfo">Detecting...</span></div>
+  </div>
+</header>
+
+<!-- ===== MAIN - Made by KSK Games ===== -->
+<main>
+  <div class="app-grid">
+    <!-- SIDEBAR - Made by KSK Games -->
+    <aside class="sidebar" id="sidebar">
+      <div class="panel">
+        <div class="panel-title"><i class="fas fa-film"></i> Video Information</div>
+        <div class="form-group">
+          <label>Video Name</label>
+          <input type="text" id="videoName" placeholder="e.g. KSK_Gaming_001" maxlength="60">
+        </div>
+        <div class="form-group">
+          <label>Video Title</label>
+          <input type="text" id="videoTitle" placeholder="e.g. EPIC Minecraft Parkour!" maxlength="100">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="videoDesc" placeholder="Describe your video..." maxlength="500"></textarea>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><i class="fas fa-sliders-h"></i> Recording Settings</div>
+        <div class="form-group">
+          <label>Resolution <span class="res-highlight" id="resHighlightBadge">6K UHD</span></label>
+          <select id="resSelect">
+            <option value="6016x3384" selected>6K UHD (6016 x 3384)</option>
+            <option value="7680x4320">8K UHD (7680 x 4320)</option>
+            <option value="3840x2160">4K UHD (3840 x 2160)</option>
+            <option value="2560x1440">2K QHD (2560 x 1440)</option>
+            <option value="1920x1080">Full HD (1920 x 1080)</option>
+            <option value="1536x864">16 HD (1536 x 864)</option>
+            <option value="1280x720">12 HD (1280 x 720)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Frame Rate <span class="fps-highlight ultra" id="fpsHighlightBadge">120 FPS</span></label>
+          <select id="fpsSelect">
+            <option value="120" selected>120 FPS (Ultra Smooth)</option>
+            <option value="90">90 FPS (High Smooth)</option>
+            <option value="60">60 FPS (Standard)</option>
+            <option value="30">30 FPS (Basic)</option>
+          </select>
+        </div>
+        <div style="margin-top:14px">
+          <div class="toggle-row">
+            <span class="toggle-label"><i class="fas fa-video" style="color:var(--accent);margin-right:6px;font-size:.72rem"></i>Face Cam (6K HD)</span>
+            <label class="toggle"><input type="checkbox" id="faceToggle" checked><span class="slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label"><i class="fas fa-microphone" style="color:var(--warn);margin-right:6px;font-size:.72rem"></i>Microphone Audio</span>
+            <label class="toggle"><input type="checkbox" id="audioToggle" checked><span class="slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label"><i class="fas fa-volume-up" style="color:var(--purple);margin-right:6px;font-size:.72rem"></i>System Audio</span>
+            <label class="toggle"><input type="checkbox" id="sysAudioToggle"><span class="slider"></span></label>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN AREA - Made by KSK Games -->
+    <div class="main-area">
+      <div class="preview-wrap" id="previewWrap">
+        <div id="previewArea">
+          <div class="preview-placeholder" id="previewPlaceholder">
+            <i class="fas fa-display"></i>
+            <p>Use the floating KSK GAMES toolbar to start recording</p>
+            <p style="font-size:.7rem;margin-top:8px;opacity:.5">The toolbar stays on top everywhere you go</p>
+          </div>
+          <video id="previewVideo" autoplay muted playsinline style="display:none"></video>
+        </div>
+        <div class="rec-indicator" id="recIndicator">
+          <div class="rec-dot"></div>
+          <span class="rec-time" id="recTime">00:00:00</span>
+        </div>
+        <div class="res-badge" id="resBadge">6K UHD <span class="fps-live-badge" id="fpsLiveBadge">120 FPS</span></div>
+        <div class="face-preview" id="facePreview">
+          <video id="faceVideo" autoplay muted playsinline></video>
+          <div class="face-label">FACE CAM</div>
+        </div>
+        <!-- Made by KSK Games - Live watermark overlay on preview -->
+        <div class="watermark-overlay" id="watermarkOverlay"><i class="fas fa-crown" style="margin-right:4px"></i> Recorded by KSK Games</div>
+        <div class="shortcut-hint">
+          <span><kbd>R</kbd> Record</span>
+          <span><kbd>P</kbd> Pause</span>
+          <span><kbd>S</kbd> Stop</span>
+        </div>
+      </div>
+
+      <div class="controls-bar">
+        <button class="ctrl-btn btn-record" id="btnRecord"><i class="fas fa-circle"></i> Record</button>
+        <button class="ctrl-btn btn-pause" id="btnPause" disabled><i class="fas fa-pause"></i> Pause</button>
+        <button class="ctrl-btn btn-stop" id="btnStop" disabled><i class="fas fa-stop"></i> Stop</button>
+        <div class="ctrl-divider"></div>
+        <button class="ctrl-btn btn-stop" id="btnTestCam" style="font-size:.75rem"><i class="fas fa-camera"></i> Test Cam</button>
+      </div>
+
+      <div class="status-bar">
+        <div class="status-item"><div class="status-dot ready" id="statusDot"></div><span id="statusText">Ready to Record</span></div>
+        <div class="status-item"><i class="fas fa-hdd" style="color:var(--accent)"></i><span id="storageUsed">0 videos saved</span></div>
+        <div class="status-item"><i class="fas fa-database" style="color:var(--accent)"></i><span id="storageSize">0 MB used</span></div>
+        <div class="status-item"><i class="fas fa-tachometer-alt" style="color:var(--cyan)"></i><span id="fpsDisplay">120 FPS selected</span></div>
+      </div>
+
+      <div class="tips-bar">
+        <div class="tip"><i class="fas fa-lightbulb"></i> Drag the floating toolbar anywhere</div>
+        <div class="tip"><i class="fas fa-lightbulb"></i> 120/90 FPS for ultra-smooth capture</div>
+        <div class="tip"><i class="fas fa-lightbulb"></i> 16 HD & 12 HD resolutions added</div>
+        <div class="tip"><i class="fas fa-lightbulb"></i> Works on mobile & laptop</div>
+        <div class="tip ksk-tip"><i class="fas fa-crown"></i> Made by KSK Games</div>
+      </div>
+
+      <div class="library-section">
+        <div class="library-header">
+          <div class="library-title"><i class="fas fa-folder-open"></i> Your Video Library</div>
+          <div class="lib-count" id="libCount">0 videos</div>
+        </div>
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search by name, title, or description...">
+        </div>
+        <div class="video-list" id="videoList">
+          <div class="empty-state"><i class="fas fa-video-slash"></i><p>No recordings yet. Hit Start to begin!</p><div class="ksk-credit-empty"><i class="fas fa-crown"></i> Made by KSK Games</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Made by KSK Games - FOOTER -->
+<footer class="ksk-footer">
+  <i class="fas fa-crown ksk-footer-icon"></i> Made by <span>KSK Games</span> &mdash; All Rights Reserved
+</footer>
+
+<!-- ===== PLAYBACK MODAL - Made by KSK Games ===== -->
+<div class="modal-overlay" id="playModal">
+  <div class="modal">
+    <button class="modal-close" id="modalCloseBtn" aria-label="Close"><i class="fas fa-times"></i></button>
+    <video id="modalVideo" controls playsinline></video>
+    <div class="modal-info">
+      <h3 id="modalName"></h3>
+      <div class="mi-title" id="modalTitle"></div>
+      <p id="modalDesc"></p>
+      <div class="mi-meta" id="modalMeta"></div>
+      <!-- Made by KSK Games credit in modal -->
+      <div class="modal-ksk-credit"><i class="fas fa-crown"></i> Recorded by KSK Games</div>
+    </div>
+  </div>
+</div>
+
+<!-- Made by KSK Games -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* ============================================
+   Made by KSK Games
+   KSK GAMES SCREEN RECORDER — FULL REBUILD
+   120/90 FPS, 16 HD, 12 HD, Mobile/Laptop
+   Every video burned with "Recorded by KSK Games"
+   ============================================ */
+
+/* Made by KSK Games - Lazy Audio Context */
+var _audioCtx = null;
+function getAudioCtx() {
+    if (!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (_audioCtx.state === 'suspended') _audioCtx.resume();
+    return _audioCtx;
+}
+
+/* Made by KSK Games - SOUND: Funk Click */
+function playFunkClick() {
+    try {
+        var ctx = getAudioCtx(), now = ctx.currentTime;
+        var len = Math.floor(ctx.sampleRate * 0.04);
+        var buf = ctx.createBuffer(1, len, ctx.sampleRate);
+        var d = buf.getChannelData(0);
+        for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 8);
+        var ns = ctx.createBufferSource(); ns.buffer = buf;
+        var nf = ctx.createBiquadFilter(); nf.type = 'bandpass'; nf.frequency.value = 3500; nf.Q.value = 1.5;
+        var ng = ctx.createGain(); ng.gain.setValueAtTime(0.35, now); ng.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+        ns.connect(nf); nf.connect(ng); ng.connect(ctx.destination); ns.start(now); ns.stop(now + 0.04);
+        var o = ctx.createOscillator(); o.type = 'sine';
+        o.frequency.setValueAtTime(180, now); o.frequency.exponentialRampToValueAtTime(60, now + 0.06);
+        var og = ctx.createGain(); og.gain.setValueAtTime(0.3, now); og.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+        o.connect(og); og.connect(ctx.destination); o.start(now); o.stop(now + 0.06);
+    } catch(e) {}
+}
+
+/* Made by KSK Games - SOUND: Funk Record Start */
+function playFunkRecordStart() {
+    try {
+        var ctx = getAudioCtx(), now = ctx.currentTime;
+        var sub = ctx.createOscillator(); sub.type = 'sine';
+        sub.frequency.setValueAtTime(55, now); sub.frequency.exponentialRampToValueAtTime(40, now + 0.2);
+        var sg = ctx.createGain(); sg.gain.setValueAtTime(0.4, now); sg.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        sub.connect(sg); sg.connect(ctx.destination); sub.start(now); sub.stop(now + 0.25);
+        var o1 = ctx.createOscillator(); o1.type = 'sawtooth';
+        o1.frequency.setValueAtTime(220, now); o1.frequency.linearRampToValueAtTime(440, now + 0.18);
+        var o2 = ctx.createOscillator(); o2.type = 'square';
+        o2.frequency.setValueAtTime(221, now); o2.frequency.linearRampToValueAtTime(443, now + 0.18);
+        var w = ctx.createBiquadFilter(); w.type = 'bandpass';
+        w.frequency.setValueAtTime(400, now); w.frequency.exponentialRampToValueAtTime(3000, now + 0.18); w.Q.value = 6;
+        var mg = ctx.createGain(); mg.gain.setValueAtTime(0.18, now);
+        mg.gain.setValueAtTime(0.18, now + 0.12); mg.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+        o1.connect(w); o2.connect(w); w.connect(mg); mg.connect(ctx.destination);
+        o1.start(now); o2.start(now); o1.stop(now + 0.3); o2.stop(now + 0.3);
+        var cl = Math.floor(ctx.sampleRate * 0.015);
+        var cb = ctx.createBuffer(1, cl, ctx.sampleRate); var cd = cb.getChannelData(0);
+        for (var i = 0; i < cl; i++) cd[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / cl, 12);
+        var cs = ctx.createBufferSource(); cs.buffer = cb;
+        var cg = ctx.createGain(); cg.gain.setValueAtTime(0.5, now); cg.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+        cs.connect(cg); cg.connect(ctx.destination); cs.start(now); cs.stop(now + 0.015);
+    } catch(e) {}
+}
+
+/* Made by KSK Games - SOUND: Funk Record Stop */
+function playFunkRecordStop() {
+    try {
+        var ctx = getAudioCtx(), now = ctx.currentTime;
+        var o1 = ctx.createOscillator(); o1.type = 'sawtooth';
+        o1.frequency.setValueAtTime(440, now); o1.frequency.exponentialRampToValueAtTime(110, now + 0.22);
+        var o2 = ctx.createOscillator(); o2.type = 'square';
+        o2.frequency.setValueAtTime(443, now); o2.frequency.exponentialRampToValueAtTime(111, now + 0.22);
+        var w = ctx.createBiquadFilter(); w.type = 'bandpass';
+        w.frequency.setValueAtTime(3000, now); w.frequency.exponentialRampToValueAtTime(300, now + 0.22); w.Q.value = 5;
+        var mg = ctx.createGain(); mg.gain.setValueAtTime(0.16, now);
+        mg.gain.setValueAtTime(0.16, now + 0.14); mg.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+        o1.connect(w); o2.connect(w); w.connect(mg); mg.connect(ctx.destination);
+        o1.start(now); o2.start(now); o1.stop(now + 0.3); o2.stop(now + 0.3);
+        var th = ctx.createOscillator(); th.type = 'sine';
+        th.frequency.setValueAtTime(80, now + 0.18); th.frequency.exponentialRampToValueAtTime(35, now + 0.38);
+        var tg = ctx.createGain(); tg.gain.setValueAtTime(0.001, now);
+        tg.gain.setValueAtTime(0.35, now + 0.18); tg.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+        th.connect(tg); tg.connect(ctx.destination); th.start(now); th.stop(now + 0.4);
+    } catch(e) {}
+}
+
+/* Made by KSK Games - SOUND: Funk Pause/Resume */
+function playFunkPause() {
+    try {
+        var ctx = getAudioCtx(), now = ctx.currentTime;
+        var notes = [659.25, 783.99, 1318.5];
+        for (var n = 0; n < notes.length; n++) {
+            var o = ctx.createOscillator(); o.type = 'triangle'; o.frequency.value = notes[n];
+            var f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = notes[n] * 2; f.Q.value = 3;
+            var g = ctx.createGain(); var t = now + n * 0.055;
+            g.gain.setValueAtTime(0.001, t); g.gain.linearRampToValueAtTime(0.22, t + 0.01);
+            g.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
+            o.connect(f); f.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + 0.1);
+        }
+        var cl = Math.floor(ctx.sampleRate * 0.01);
+        var cb = ctx.createBuffer(1, cl, ctx.sampleRate); var cd = cb.getChannelData(0);
+        for (var i = 0; i < cl; i++) cd[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / cl, 15);
+        var cs = ctx.createBufferSource(); cs.buffer = cb;
+        var cg = ctx.createGain(); cg.gain.setValueAtTime(0.4, now); cg.gain.exponentialRampToValueAtTime(0.001, now + 0.01);
+        cs.connect(cg); cg.connect(ctx.destination); cs.start(now); cs.stop(now + 0.01);
+    } catch(e) {}
+}
+
+/* Made by KSK Games - STATE */
+var mediaRecorder = null;
+var recordedChunks = [];
+var isRecording = false;
+var isPaused = false;
+var timerInterval = null;
+var startTime = 0;
+var elapsedBeforePause = 0;
+var screenStream = null;
+var micStream = null;
+var faceStream = null;
+var overlayCamStream = null;
+var combinedStream = null;
+var selectedMime = '';
+
+/* Made by KSK Games - Watermark canvas vars */
+var wCanvas = null;
+var wCtx = null;
+var drawRAF = null;
+var useWatermarkCanvas = false;
+
+/* Made by KSK Games - BROWSER DETECTION */
+(function() {
+    var ua = navigator.userAgent;
+    var name = 'Chrome';
+    if (ua.indexOf('Firefox') !== -1) name = 'Firefox';
+    else if (ua.indexOf('Edg') !== -1) name = 'Edge';
+    else if (ua.indexOf('Safari') !== -1 && ua.indexOf('Chrome') === -1) name = 'Safari';
+    var isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(ua);
+    document.getElementById('browserInfo').textContent = name + (isMobile ? ' Mobile' : ' Desktop');
+})();
+
+/* Made by KSK Games - RESOLUTION / FPS LABELS */
+var resLabels = {
+    '7680x4320': '8K UHD',
+    '6016x3384': '6K UHD',
+    '3840x2160': '4K UHD',
+    '2560x1440': '2K QHD',
+    '1920x1080': 'FHD 1080p',
+    '1536x864': '16 HD',
+    '1280x720': '12 HD'
+};
+var fpsLabels = { '120': '120 FPS', '90': '90 FPS', '60': '60 FPS', '30': '30 FPS' };
+
+function updateResBadge() {
+    var v = document.getElementById('resSelect').value;
+    var label = resLabels[v] || v;
+    document.getElementById('resBadge').innerHTML = label + ' <span class="fps-live-badge" id="fpsLiveBadge">' + fpsLabels[document.getElementById('fpsSelect').value] + '</span>';
+    document.getElementById('resHighlightBadge').textContent = label;
+}
+
+function updateFpsBadge() {
+    var v = document.getElementById('fpsSelect').value;
+    var label = fpsLabels[v] || v + ' FPS';
+    var badge = document.getElementById('fpsHighlightBadge');
+    badge.textContent = label;
+    badge.className = 'fps-highlight ' + (parseInt(v) >= 90 ? 'ultra' : 'high');
+    document.getElementById('fpsDisplay').textContent = label + ' selected';
+    var flb = document.getElementById('fpsLiveBadge');
+    if (flb) flb.textContent = label;
+}
+
+document.getElementById('resSelect').addEventListener('change', function() { updateResBadge(); playFunkClick(); });
+document.getElementById('fpsSelect').addEventListener('change', function() { updateFpsBadge(); playFunkClick(); });
+
+/* Made by KSK Games - TOAST */
+function showToast(message, type) {
+    type = type || 'success';
+    var container = document.getElementById('toastContainer');
+    var toast = document.createElement('div');
+    toast.className = 'toast toast-' + type;
+    var icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-info-circle' };
+    toast.innerHTML = '<i class="fas ' + (icons[type] || icons.info) + '"></i> ' + message;
+    container.appendChild(toast);
+    requestAnimationFrame(function() {
+        requestAnimationFrame(function() { toast.classList.add('show'); });
+    });
+    setTimeout(function() {
+        toast.classList.remove('show');
+        setTimeout(function() { if (toast.parentNode) toast.remove(); }, 400);
+    }, 3500);
+}
+
+/* Made by KSK Games - TIMER */
+function formatTime(ms) {
+    var t = Math.floor(ms / 1000);
+    var h = String(Math.floor(t / 3600)).padStart(2, '0');
+    var m = String(Math.floor((t % 3600) / 60)).padStart(2, '0');
+    var s = String(t % 60).padStart(2, '0');
+    return h + ':' + m + ':' + s;
+}
+function startTimer() {
+    startTime = Date.now(); elapsedBeforePause = 0;
+    timerInterval = setInterval(function() {
+        if (!isPaused) {
+            var e = elapsedBeforePause + (Date.now() - startTime);
+            var txt = formatTime(e);
+            document.getElementById('recTime').textContent = txt;
+            var kt = document.getElementById('kskTimer');
+            kt.textContent = txt;
+            kt.classList.remove('not-recording');
+        }
+    }, 200);
+}
+function stopTimer() { clearInterval(timerInterval); timerInterval = null; }
+function getElapsedMs() { return startTime ? elapsedBeforePause + (Date.now() - startTime) : 0; }
+
+/* Made by KSK Games - FIND SUPPORTED MIME */
+function findSupportedMime() {
+    var types = ['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm','video/mp4'];
+    for (var i = 0; i < types.length; i++) { if (MediaRecorder.isTypeSupported(types[i])) return types[i]; }
+    return '';
+}
+
+/* Made by KSK Games - INDEXEDDB STORAGE */
+var DB_NAME = 'KSKGamesRecorder';
+var DB_VER = 2;
+var STORE = 'videos';
+
+function openDB() {
+    return new Promise(function(resolve, reject) {
+        var req = indexedDB.open(DB_NAME, DB_VER);
+        req.onupgradeneeded = function(e) {
+            var db = e.target.result;
+            if (!db.objectStoreNames.contains(STORE)) db.createObjectStore(STORE, { keyPath: 'name' });
+        };
+        req.onsuccess = function(e) { resolve(e.target.result); };
+        req.onerror = function(e) { reject(e.target.error); };
+    });
+}
+function saveVideoToDB(record) {
+    return openDB().then(function(db) {
+        return new Promise(function(resolve, reject) {
+            var tx = db.transaction(STORE, 'readwrite');
+            tx.objectStore(STORE).put(record);
+            tx.oncomplete = function() { resolve(); };
+            tx.onerror = function(e) { reject(e.target.error); };
+        });
+    });
+}
+function getVideoFromDB(name) {
+    return openDB().then(function(db) {
+        return new Promise(function(resolve, reject) {
+            var tx = db.transaction(STORE, 'readonly');
+            var req = tx.objectStore(STORE).get(name);
+            req.onsuccess = function() { resolve(req.result); };
+            req.onerror = function(e) { reject(e.target.error); };
+        });
+    });
+}
+function deleteVideoFromDB(name) {
+    return openDB().then(function(db) {
+        return new Promise(function(resolve, reject) {
+            var tx = db.transaction(STORE, 'readwrite');
+            tx.objectStore(STORE).delete(name);
+            tx.oncomplete = function() { resolve(); };
+            tx.onerror = function(e) { reject(e.target.error); };
+        });
+    });
+}
+function getAllVideosFromDB() {
+    return openDB().then(function(db) {
+        return new Promise(function(resolve, reject) {
+            var tx = db.transaction(STORE, 'readonly');
+            var req = tx.objectStore(STORE).getAll();
+            req.onsuccess = function() { resolve(req.result || []); };
+            req.onerror = function(e) { reject(e.target.error); };
+        });
+    });
+}
+function getLibrary() { return JSON.parse(localStorage.getItem('ksk_lib') || '[]'); }
+function saveLibrary(lib) { localStorage.setItem('ksk_lib', JSON.stringify(lib)); }
+function updateStorageInfo() {
+    var lib = getLibrary();
+    var count = lib.length;
+    var totalBytes = 0;
+    for (var i = 0; i < lib.length; i++) totalBytes += (lib[i].size || 0);
+    document.getElementById('storageUsed').textContent = count + ' video' + (count !== 1 ? 's' : '') + ' saved';
+    document.getElementById('storageSize').textContent = (totalBytes / (1024 * 1024)).toFixed(1) + ' MB used';
+    document.getElementById('libCount').textContent = count + ' video' + (count !== 1 ? 's' : '');
+}
+
+/* Made by KSK Games - WATERMARK CANVAS SYSTEM */
+/* This burns "Recorded by KSK Games" into every frame of the recorded video */
+function initWatermarkCanvas(w, h) {
+    wCanvas = document.getElementById('watermarkCanvas');
+    wCtx = wCanvas.getContext('2d');
+    wCanvas.width = w;
+    wCanvas.height = h;
+    useWatermarkCanvas = true;
+}
+
+function drawFrameWithWatermark() {
+    if (!isRecording || !wCtx || !useWatermarkCanvas) return;
+    var video = document.getElementById('previewVideo');
+    if (video.readyState >= 2) {
+        /* Draw the screen capture frame */
+        wCtx.drawImage(video, 0, 0, wCanvas.width, wCanvas.height);
+
+        /* Calculate font size based on canvas dimensions */
+        var fontSize = Math.max(16, Math.floor(wCanvas.width * 0.02));
+        var padding = Math.floor(wCanvas.width * 0.02);
+
+        /* Draw semi-transparent background bar for readability */
+        wCtx.save();
+        var text = 'Recorded by KSK Games';
+        wCtx.font = 'bold ' + fontSize + 'px Orbitron, monospace';
+        var textWidth = wCtx.measureText(text).width;
+        var barX = wCanvas.width - textWidth - padding * 2 - 10;
+        var barY = wCanvas.height - fontSize - padding * 2 - 4;
+        var barW = textWidth + padding * 2;
+        var barH = fontSize + padding * 1.5;
+
+        /* Background bar */
+        wCtx.fillStyle = 'rgba(0, 0, 0, 0.55)';
+        wCtx.beginPath();
+        var r = 6;
+        wCtx.moveTo(barX + r, barY);
+        wCtx.lineTo(barX + barW - r, barY);
+        wCtx.quadraticCurveTo(barX + barW, barY, barX + barW, barY + r);
+        wCtx.lineTo(barX + barW, barY + barH - r);
+        wCtx.quadraticCurveTo(barX + barW, barY + barH, barX + barW - r, barY + barH);
+        wCtx.lineTo(barX + r, barY + barH);
+        wCtx.quadraticCurveTo(barX, barY + barH, barX, barY + barH - r);
+        wCtx.lineTo(barX, barY + r);
+        wCtx.quadraticCurveTo(barX, barY, barX + r, barY);
+        wCtx.closePath();
+        wCtx.fill();
+
+        /* Green accent line on left of bar */
+        wCtx.fillStyle = 'rgba(0, 255, 136, 0.8)';
+        wCtx.fillRect(barX, barY + 4, 3, barH - 8);
+
+        /* Crown icon area */
+        wCtx.font = 'bold ' + Math.floor(fontSize * 0.9) + 'px serif';
+        wCtx.fillStyle = 'rgba(0, 255, 136, 0.9)';
+        wCtx.textAlign = 'left';
+        wCtx.textBaseline = 'middle';
+        wCtx.fillText('\u265B', barX + padding - 2, barY + barH / 2 + 1);
+
+        /* Main text */
+        wCtx.font = 'bold ' + fontSize + 'px Orbitron, monospace';
+        wCtx.fillStyle = 'rgba(0, 255, 136, 0.95)';
+        wCtx.textAlign = 'left';
+        wCtx.textBaseline = 'middle';
+        wCtx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+        wCtx.shadowBlur = 6;
+        wCtx.shadowOffsetX = 1;
+        wCtx.shadowOffsetY = 1;
+        wCtx.fillText(text, barX + padding + fontSize, barY + barH / 2 + 1);
+
+        wCtx.restore();
+    }
+    drawRAF = requestAnimationFrame(drawFrameWithWatermark);
+}
+
+function startWatermarkDrawLoop() {
+    drawRAF = requestAnimationFrame(drawFrameWithWatermark);
+}
+
+function stopWatermarkDrawLoop() {
+    if (drawRAF) { cancelAnimationFrame(drawRAF); drawRAF = null; }
+    useWatermarkCanvas = false;
+}
+
+/* Made by KSK Games - AUTO SAVE VIDEO AFTER STOP */
+function autoSaveVideo() {
+    if (recordedChunks.length === 0) return;
+    var blob = new Blob(recordedChunks, { type: selectedMime || 'video/webm' });
+    var url = URL.createObjectURL(blob);
+    var vName = document.getElementById('videoName').value.trim();
+    var vTitle = document.getElementById('videoTitle').value.trim();
+    var vDesc = document.getElementById('videoDesc').value.trim();
+    var res = document.getElementById('resSelect').value;
+    var fps = document.getElementById('fpsSelect').value;
+    var elapsed = getElapsedMs();
+    var lib = getLibrary();
+    var record = {
+        name: vName,
+        title: vTitle,
+        desc: vDesc,
+        resolution: resLabels[res] || res,
+        fps: fpsLabels[fps] || fps + ' FPS',
+        duration: formatTime(elapsed),
+        size: blob.size,
+        date: new Date().toLocaleString(),
+        url: url,
+        blob: blob,
+        /* Made by KSK Games - credit stored in metadata */
+        recordedBy: 'KSK Games'
+    };
+    lib.unshift(record);
+    saveLibrary(lib);
+    /* Also save blob to IndexedDB for large files - Made by KSK Games */
+    saveVideoToDB(record).then(function() {
+        renderLibrary();
+        updateStorageInfo();
+        showToast('Video "' + vName + '" saved! Recorded by KSK Games (' + (blob.size / (1024 * 1024)).toFixed(1) + ' MB)', 'success');
+    }).catch(function(err) {
+        /* Fallback: just localStorage URL reference - Made by KSK Games */
+        renderLibrary();
+        updateStorageInfo();
+        showToast('Video saved by KSK Games (URL reference).', 'info');
+    });
+}
+
+/* Made by KSK Games - CLEANUP STREAMS */
+function cleanupStreams() {
+    if (screenStream) { screenStream.getTracks().forEach(function(t) { t.stop(); }); screenStream = null; }
+    if (micStream) { micStream.getTracks().forEach(function(t) { t.stop(); }); micStream = null; }
+    if (faceStream) { faceStream.getTracks().forEach(function(t) { t.stop(); }); faceStream = null; }
+    combinedStream = null;
+    document.getElementById('faceVideo').srcObject = null;
+    document.getElementById('facePreview').classList.remove('visible');
+    /* Made by KSK Games - stop watermark draw loop */
+    stopWatermarkDrawLoop();
+}
+
+/* Made by KSK Games - UPDATE UI STATE */
+function setUIState(state) {
+    var btnRec = document.getElementById('btnRecord');
+    var btnPause = document.getElementById('btnPause');
+    var btnStop = document.getElementById('btnStop');
+    var kskStart = document.getElementById('kskBtnStart');
+    var kskPause = document.getElementById('kskBtnPause');
+    var kskStop = document.getElementById('kskBtnStop');
+    var sDot = document.getElementById('statusDot');
+    var sText = document.getElementById('statusText');
+    var wrap = document.getElementById('previewWrap');
+    var recInd = document.getElementById('recIndicator');
+    var resBdg = document.getElementById('resBadge');
+    var brand = document.getElementById('kskBrand');
+    var recDot = document.getElementById('kskRecDot');
+    var kskFps = document.getElementById('kskFpsBadge');
+    /* Made by KSK Games - watermark overlay */
+    var wmOverlay = document.getElementById('watermarkOverlay');
+
+    if (state === 'ready') {
+        btnRec.classList.remove('recording'); btnRec.disabled = false;
+        btnPause.disabled = true; btnStop.disabled = true;
+        kskStart.classList.remove('is-recording'); kskStart.disabled = false;
+        kskPause.disabled = true; kskStop.disabled = true;
+        sDot.className = 'status-dot ready'; sText.textContent = 'Ready to Record';
+        wrap.classList.remove('active', 'recording');
+        recInd.classList.remove('visible'); resBdg.classList.remove('visible');
+        brand.classList.remove('recording');
+        kskFps.style.display = 'none';
+        document.getElementById('kskMicInd').style.display = 'none';
+        document.getElementById('kskSysInd').style.display = 'none';
+        var kt = document.getElementById('kskTimer'); kt.textContent = '00:00:00'; kt.classList.add('not-recording');
+        /* Made by KSK Games - hide watermark overlay */
+        wmOverlay.classList.remove('visible');
+    } else if (state === 'recording') {
+        btnRec.classList.add('recording'); btnRec.disabled = true;
+        btnPause.disabled = false; btnStop.disabled = false;
+        kskStart.classList.add('is-recording'); kskStart.disabled = true;
+        kskPause.disabled = false; kskStop.disabled = false;
+        sDot.className = 'status-dot rec'; sText.textContent = 'Recording...';
+        wrap.classList.add('active', 'recording');
+        recInd.classList.add('visible'); resBdg.classList.add('visible');
+        brand.classList.add('recording');
+        var fpsVal = document.getElementById('fpsSelect').value;
+        kskFps.textContent = fpsLabels[fpsVal] || fpsVal + ' FPS';
+        kskFps.style.display = 'inline-block';
+        /* Made by KSK Games - show watermark overlay on preview */
+        wmOverlay.classList.add('visible');
+    } else if (state === 'paused') {
+        btnRec.classList.add('recording'); btnRec.disabled = true;
+        btnPause.disabled = false; btnStop.disabled = false;
+        kskStart.classList.add('is-recording'); kskStart.disabled = true;
+        kskPause.disabled = false; kskStop.disabled = false;
+        sDot.className = 'status-dot paused'; sText.textContent = 'Paused';
+        wrap.classList.remove('recording');
+        brand.classList.remove('recording');
+        document.getElementById('recTime').style.opacity = '0.4';
+        document.getElementById('kskTimer').style.opacity = '0.4';
+    } else if (state === 'resumed') {
+        sDot.className = 'status-dot rec'; sText.textContent = 'Recording...';
+        wrap.classList.add('recording');
+        brand.classList.add('recording');
+        document.getElementById('recTime').style.opacity = '1';
+        document.getElementById('kskTimer').style.opacity = '1';
+    }
+}
+
+/* Made by KSK Games - OVERLAY CAMERA */
+async function startOverlayCamera() {
+    try {
+        overlayCamStream = await navigator.mediaDevices.getUserMedia({
+            video: { width: { ideal: 3840 }, height: { ideal: 2160 }, frameRate: { ideal: 60 } },
+            audio: false
+        });
+        var vid = document.getElementById('kskCamVideo');
+        vid.srcObject = overlayCamStream;
+        vid.style.display = 'block';
+        document.getElementById('kskCamPlaceholder').style.display = 'none';
+        document.getElementById('kskCamPanel').classList.remove('no-cam');
+    } catch(e) {
+        try {
+            overlayCamStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            var vid2 = document.getElementById('kskCamVideo');
+            vid2.srcObject = overlayCamStream;
+            vid2.style.display = 'block';
+            document.getElementById('kskCamPlaceholder').style.display = 'none';
+            document.getElementById('kskCamPanel').classList.remove('no-cam');
+        } catch(e2) { /* silent */ }
+    }
+}
+function stopOverlayCamera() {
+    if (overlayCamStream) { overlayCamStream.getTracks().forEach(function(t) { t.stop(); }); overlayCamStream = null; }
+    document.getElementById('kskCamVideo').srcObject = null;
+    document.getElementById('kskCamVideo').style.display = 'none';
+    document.getElementById('kskCamPlaceholder').style.display = '';
+    document.getElementById('kskCamPanel').classList.add('no-cam');
+}
+
+/* Made by KSK Games - START RECORDING */
+async function startRecording() {
+    if (isRecording) return;
+    playFunkClick();
+    var vName = document.getElementById('videoName').value.trim();
+    var vTitle = document.getElementById('videoTitle').value.trim();
+    if (!vName) { showToast('Enter a Video Name first!', 'error'); document.getElementById('videoName').focus(); return; }
+    if (!vTitle) { showToast('Enter a Video Title first!', 'error'); document.getElementById('videoTitle').focus(); return; }
+    var lib = getLibrary();
+    if (lib.find(function(v) { return v.name === vName; })) { showToast('Video name already exists!', 'error'); return; }
+
+    try {
+        var resVal = document.getElementById('resSelect').value;
+        var parts = resVal.split('x');
+        var w = parseInt(parts[0]), h = parseInt(parts[1]);
+        var fps = parseInt(document.getElementById('fpsSelect').value);
+        var wantFace = document.getElementById('faceToggle').checked;
+        var wantAudio = document.getElementById('audioToggle').checked;
+        var wantSysAudio = document.getElementById('sysAudioToggle').checked;
+
+        /* Build constraints - Made by KSK Games */
+        var videoConstraints = { width: { ideal: w }, height: { ideal: h }, frameRate: { ideal: fps } };
+        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            videoConstraints.facingMode = 'environment';
+        }
+
+        screenStream = await navigator.mediaDevices.getDisplayMedia({ video: videoConstraints, audio: true });
+
+        var hasSysAudio = false;
+        if (screenStream.getAudioTracks().length > 0) {
+            hasSysAudio = wantSysAudio;
+            if (!wantSysAudio) screenStream.getAudioTracks().forEach(function(t) { t.stop(); });
+        } else if (wantSysAudio) { showToast('System audio not available for this share.', 'info'); }
+
+        /* Face cam for recording - Made by KSK Games */
+        if (wantFace) {
+            try {
+                faceStream = await navigator.mediaDevices.getUserMedia({ video: { width: 320, height: 240, frameRate: 30 }, audio: false });
+                document.getElementById('faceVideo').srcObject = faceStream;
+                document.getElementById('facePreview').classList.add('visible');
+            } catch(e) { faceStream = null; }
+        }
+
+        /* Microphone - Made by KSK Games */
+        var hasMic = false;
+        if (wantAudio) {
+            try { micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false }); hasMic = true; }
+            catch(e) { showToast('Microphone access denied.', 'error'); }
+        }
+
+        /* Made by KSK Games - Set up watermark canvas for burning "Recorded by KSK Games" */
+        var track = screenStream.getVideoTracks()[0];
+        var settings = track.getSettings();
+        var cw = Math.min(settings.width || 1920, 3840);
+        var ch = Math.min(settings.height || 1080, 2160);
+        initWatermarkCanvas(cw, ch);
+        startWatermarkDrawLoop();
+
+        /* Made by KSK Games - Use canvas stream for recording (with watermark burned in) */
+        var canvasStream = wCanvas.captureStream(0);
+
+        /* Combine tracks - Made by KSK Games */
+        var tracks = [];
+        canvasStream.getVideoTracks().forEach(function(t) { tracks.push(t); });
+        if (hasSysAudio) screenStream.getAudioTracks().forEach(function(t) { tracks.push(t); });
+        if (hasMic) micStream.getAudioTracks().forEach(function(t) { tracks.push(t); });
+        combinedStream = new MediaStream(tracks);
+
+        document.getElementById('kskMicInd').style.display = hasMic ? 'flex' : 'none';
+        document.getElementById('kskSysInd').style.display = hasSysAudio ? 'flex' : 'none';
+
+        /* Bitrate based on res + fps - Made by KSK Games */
+        selectedMime = findSupportedMime();
+        var bitrate = 4000000;
+        if (w >= 7680) bitrate = 80000000;
+        else if (w >= 6016) bitrate = 60000000;
+        else if (w >= 3840) bitrate = 40000000;
+        else if (w >= 2560) bitrate = 20000000;
+        else if (w >= 1920) bitrate = 10000000;
+        else if (w >= 1536) bitrate = 7000000;
+        else bitrate = 5000000;
+        /* Increase bitrate for high FPS - Made by KSK Games */
+        if (fps >= 120) bitrate = Math.floor(bitrate * 1.8);
+        else if (fps >= 90) bitrate = Math.floor(bitrate * 1.4);
+
+        var opts = { videoBitsPerSecond: bitrate };
+        if (selectedMime) opts.mimeType = selectedMime;
+
+        mediaRecorder = new MediaRecorder(combinedStream, opts);
+        recordedChunks = [];
+
+        mediaRecorder.ondataavailable = function(e) { if (e.data && e.data.size > 0) recordedChunks.push(e.data); };
+        mediaRecorder.onstop = function() { autoSaveVideo(); cleanupStreams(); setUIState('ready'); isRecording = false; isPaused = false; stopTimer(); };
+
+        /* Handle user stopping share from browser UI - Made by KSK Games */
+        screenStream.getVideoTracks()[0].onended = function() { if (isRecording) stopRecording(); };
+
+        mediaRecorder.start(1000);
+        isRecording = true;
+        isPaused = false;
+
+        playFunkRecordStart();
+
+        /* Preview (raw stream for low latency, watermark shows as CSS overlay) - Made by KSK Games */
+        var pv = document.getElementById('previewVideo');
+        pv.srcObject = screenStream;
+        pv.style.display = 'block';
+        document.getElementById('previewPlaceholder').style.display = 'none';
+
+        setUIState('recording');
+        updateResBadge();
+        startTimer();
+
+        /* Close mobile sidebar if open - Made by KSK Games */
+        document.getElementById('sidebar').classList.remove('mobile-open');
+
+        showToast('Recording started at ' + (resLabels[resVal] || resVal) + ' ' + fpsLabels[String(fps)] + ' — Made by KSK Games!', 'success');
+    } catch(e) {
+        /* Made by KSK Games - stop watermark on error */
+        stopWatermarkDrawLoop();
+        showToast('Could not start recording: ' + (e.message || e), 'error');
+        setUIState('ready');
+    }
+}
+
+/* Made by KSK Games - PAUSE / RESUME */
+function togglePause() {
+    if (!isRecording) return;
+    playFunkPause();
+    if (!isPaused) {
+        mediaRecorder.pause();
+        isPaused = true;
+        elapsedBeforePause += (Date.now() - startTime);
+        setUIState('paused');
+        document.getElementById('btnPause').innerHTML = '<i class="fas fa-play"></i> Resume';
+        document.getElementById('kskBtnPause').querySelector('span').textContent = 'RESUME';
+        document.getElementById('kskBtnPause').querySelector('i').className = 'fas fa-play';
+        showToast('Recording paused. Made by KSK Games.', 'info');
+    } else {
+        mediaRecorder.resume();
+        isPaused = false;
+        startTime = Date.now();
+        setUIState('resumed');
+        document.getElementById('btnPause').innerHTML = '<i class="fas fa-pause"></i> Pause';
+        document.getElementById('kskBtnPause').querySelector('span').textContent = 'PAUSE';
+        document.getElementById('kskBtnPause').querySelector('i').className = 'fas fa-pause';
+        showToast('Recording resumed. Made by KSK Games.', 'info');
+    }
+}
+
+/* Made by KSK Games - STOP RECORDING */
+function stopRecording() {
+    if (!isRecording) return;
+    playFunkRecordStop();
+    isRecording = false;
+    isPaused = false;
+    stopTimer();
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+
+    document.getElementById('previewVideo').srcObject = null;
+    document.getElementById('previewVideo').style.display = 'none';
+    document.getElementById('previewPlaceholder').style.display = '';
+    document.getElementById('recTime').style.opacity = '1';
+    document.getElementById('kskTimer').style.opacity = '1';
+    document.getElementById('btnPause').innerHTML = '<i class="fas fa-pause"></i> Pause';
+    document.getElementById('kskBtnPause').querySelector('span').textContent = 'PAUSE';
+    document.getElementById('kskBtnPause').querySelector('i').className = 'fas fa-pause';
+
+    setUIState('ready');
+    showToast('Recording stopped. Video will have "Recorded by KSK Games" watermark! Saving...', 'info');
+}
+
+/* Made by KSK Games - TEST CAMERA */
+async function testCamera() {
+    playFunkClick();
+    try {
+        var stream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 3840 }, height: { ideal: 2160 }, frameRate: { ideal: 60 } }, audio: false });
+        document.getElementById('faceVideo').srcObject = stream;
+        document.getElementById('facePreview').classList.add('visible');
+        showToast('Camera test active! Made by KSK Games.', 'success');
+        setTimeout(function() {
+            stream.getTracks().forEach(function(t) { t.stop(); });
+            document.getElementById('faceVideo').srcObject = null;
+            document.getElementById('facePreview').classList.remove('visible');
+            showToast('Camera test ended. Made by KSK Games.', 'info');
+        }, 5000);
+    } catch(e) { showToast('Camera access denied: ' + (e.message || e), 'error'); }
+}
+
+/* Made by KSK Games - RENDER LIBRARY */
+function renderLibrary(filter) {
+    var lib = getLibrary();
+    if (filter) {
+        var f = filter.toLowerCase();
+        lib = lib.filter(function(v) {
+            return (v.name && v.name.toLowerCase().indexOf(f) !== -1) ||
+                   (v.title && v.title.toLowerCase().indexOf(f) !== -1) ||
+                   (v.desc && v.desc.toLowerCase().indexOf(f) !== -1);
+        });
+    }
+    if (lib.length === 0) {
+        list = document.getElementById('videoList');
+        list.innerHTML = '<div class="empty-state"><i class="fas fa-video-slash"></i><p>' + (filter ? 'No matching recordings found.' : 'No recordings yet. Hit Start to begin!') + '</p><div class="ksk-credit-empty"><i class="fas fa-crown"></i> Made by KSK Games</div></div>';
+        return;
+    }
+    var html = '';
+    for (var i = 0; i < lib.length; i++) {
+        var v = lib[i];
+        var sizeStr = v.size ? (v.size / (1024 * 1024)).toFixed(1) + ' MB' : 'N/A';
+        html += '<div class="video-card" data-name="' + v.name + '">' +
+            '<div class="video-card-top"><div class="video-card-name">' + escHtml(v.name) + '</div><div class="video-card-date">' + escHtml(v.date || '') + '</div></div>' +
+            (v.title ? '<div class="video-card-title">' + escHtml(v.title) + '</div>' : '') +
+            (v.desc ? '<div class="video-card-desc">' + escHtml(v.desc) + '</div>' : '') +
+            '<div class="video-card-ksk-credit"><i class="fas fa-crown"></i> Recorded by KSK Games</div>' +
+            '<div class="video-card-meta">' +
+                '<span><i class="fas fa-desktop"></i> ' + escHtml(v.resolution || 'N/A') + '</span>' +
+                '<span><i class="fas fa-tachometer-alt"></i> ' + escHtml(v.fps || 'N/A') + '</span>' +
+                '<span><i class="fas fa-clock"></i> ' + escHtml(v.duration || 'N/A') + '</span>' +
+                '<span><i class="fas fa-hdd"></i> ' + sizeStr + '</span>' +
+            '</div>' +
+            '<div class="video-card-actions">' +
+                '<button class="vc-btn vc-play" onclick="playVideo(\'' + escAttr(v.name) + '\')"><i class="fas fa-play"></i> Play</button>' +
+                '<button class="vc-btn vc-dl" onclick="downloadVideo(\'' + escAttr(v.name) + '\')"><i class="fas fa-download"></i> Download</button>' +
+                '<button class="vc-btn vc-del" onclick="deleteVideo(\'' + escAttr(v.name) + '\')"><i class="fas fa-trash"></i> Delete</button>' +
+            '</div></div>';
+    }
+    document.getElementById('videoList').innerHTML = html;
+}
+function escHtml(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+function escAttr(s) { return (s || '').replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
+
+/* Made by KSK Games - PLAY VIDEO */
+async function playVideo(name) {
+    playFunkClick();
+    try {
+        var record = await getVideoFromDB(name);
+        if (record && record.blob) {
+            var url = URL.createObjectURL(record.blob);
+            showPlayModal(url, record);
+            return;
+        }
+    } catch(e) { /* fallback */ }
+    var lib = getLibrary();
+    var v = lib.find(function(r) { return r.name === name; });
+    if (v && v.url) { showPlayModal(v.url, v); }
+    else { showToast('Video data not found. Made by KSK Games.', 'error'); }
+}
+function showPlayModal(url, v) {
+    document.getElementById('modalVideo').src = url;
+    document.getElementById('modalName').textContent = v.name || '';
+    document.getElementById('modalTitle').textContent = v.title || '';
+    document.getElementById('modalDesc').textContent = v.desc || '';
+    var sizeStr = v.size ? (v.size / (1024 * 1024)).toFixed(1) + ' MB' : 'N/A';
+    document.getElementById('modalMeta').innerHTML =
+        '<span><i class="fas fa-desktop"></i> ' + escHtml(v.resolution || 'N/A') + '</span>' +
+        '<span><i class="fas fa-tachometer-alt"></i> ' + escHtml(v.fps || 'N/A') + '</span>' +
+        '<span><i class="fas fa-clock"></i> ' + escHtml(v.duration || 'N/A') + '</span>' +
+        '<span><i class="fas fa-hdd"></i> ' + sizeStr + '</span>' +
+        '<span><i class="fas fa-calendar"></i> ' + escHtml(v.date || '') + '</span>';
+    document.getElementById('playModal').classList.add('visible');
+}
+
+/* Made by KSK Games - DOWNLOAD VIDEO */
+async function downloadVideo(name) {
+    playFunkClick();
+    try {
+        var record = await getVideoFromDB(name);
+        if (record && record.blob) { triggerDownload(record.blob, name); return; }
+    } catch(e) { /* fallback */ }
+    var lib = getLibrary();
+    var v = lib.find(function(r) { return r.name === name; });
+    if (v && v.url) {
+        try {
+            var resp = await fetch(v.url);
+            var blob = await resp.blob();
+            triggerDownload(blob, name);
+        } catch(e) { showToast('Cannot download — data expired. Re-record. Made by KSK Games.', 'error'); }
+    } else { showToast('Video data not found. Made by KSK Games.', 'error'); }
+}
+function triggerDownload(blob, name) {
+    /* Made by KSK Games - filename includes KSK Games credit */
+    var ext = blob.type.indexOf('mp4') !== -1 ? 'mp4' : 'webm';
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name + '_Recorded_by_KSK_Games.' + ext;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast('Downloading ' + name + '_Recorded_by_KSK_Games.' + ext + ' — Made by KSK Games', 'success');
+}
+
+/* Made by KSK Games - DELETE VIDEO */
+async function deleteVideo(name) {
+    playFunkClick();
+    var lib = getLibrary();
+    lib = lib.filter(function(v) { return v.name !== name; });
+    saveLibrary(lib);
+    try { await deleteVideoFromDB(name); } catch(e) { /* ok */ }
+    renderLibrary();
+    updateStorageInfo();
+    showToast('Video "' + name + '" deleted. Made by KSK Games.', 'info');
+}
+
+/* Made by KSK Games - EVENT LISTENERS */
+document.getElementById('kskBtnStart').addEventListener('click', startRecording);
+document.getElementById('kskBtnPause').addEventListener('click', togglePause);
+document.getElementById('kskBtnStop').addEventListener('click', stopRecording);
+document.getElementById('btnRecord').addEventListener('click', startRecording);
+document.getElementById('btnPause').addEventListener('click', togglePause);
+document.getElementById('btnStop').addEventListener('click', stopRecording);
+document.getElementById('btnTestCam').addEventListener('click', testCamera);
+
+document.getElementById('modalCloseBtn').addEventListener('click', function() {
+    document.getElementById('playModal').classList.remove('visible');
+    document.getElementById('modalVideo').pause();
+    document.getElementById('modalVideo').src = '';
+});
+document.getElementById('playModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.classList.remove('visible');
+        document.getElementById('modalVideo').pause();
+        document.getElementById('modalVideo').src = '';
+    }
+});
+
+document.getElementById('searchInput').addEventListener('input', function() {
+    renderLibrary(this.value.trim());
+});
+
+/* Made by KSK Games - COLLAPSE OVERLAY */
+document.getElementById('kskCollapseBtn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    var overlay = document.getElementById('kskOverlay');
+    overlay.classList.toggle('collapsed');
+    var icon = this.querySelector('i');
+    icon.className = overlay.classList.contains('collapsed') ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+});
+
+/* Made by KSK Games - MOBILE SIDEBAR TOGGLE */
+document.getElementById('mobileSidebarBtn').addEventListener('click', function() {
+    document.getElementById('sidebar').classList.toggle('mobile-open');
+});
+document.addEventListener('click', function(e) {
+    var sidebar = document.getElementById('sidebar');
+    var btn = document.getElementById('mobileSidebarBtn');
+    if (sidebar.classList.contains('mobile-open') && !sidebar.contains(e.target) && !btn.contains(e.target)) {
+        sidebar.classList.remove('mobile-open');
+    }
+});
+
+/* Made by KSK Games - KEYBOARD SHORTCUTS */
+document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+    if (e.key === 'r' || e.key === 'R') { if (!isRecording) startRecording(); }
+    else if (e.key === 'p' || e.key === 'P') { if (isRecording) togglePause(); }
+    else if (e.key === 's' || e.key === 'S') { if (isRecording) stopRecording(); }
+    else if (e.key === 'Escape') {
+        var modal = document.getElementById('playModal');
+        if (modal.classList.contains('visible')) {
+            modal.classList.remove('visible');
+            document.getElementById('modalVideo').pause();
+            document.getElementById('modalVideo').src = '';
+        }
+    }
+});
+
+/* Made by KSK Games - DRAGGABLE OVERLAY */
+(function() {
+    var el = document.getElementById('kskOverlay');
+    var handle = document.getElementById('kskBrand');
+    var isDragging = false;
+    var startX = 0, startY = 0, startLeft = 0, startTop = 0;
+
+    function onStart(e) {
+        if (e.target.closest('.ksk-collapse-btn') || e.target.closest('.ksk-ctrl-btn')) return;
+        isDragging = true;
+        var touch = e.touches ? e.touches[0] : e;
+        startX = touch.clientX;
+        startY = touch.clientY;
+        var rect = el.getBoundingClientRect();
+        startLeft = rect.left;
+        startTop = rect.top;
+        el.style.transition = 'none';
+    }
+    function onMove(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        var touch = e.touches ? e.touches[0] : e;
+        var dx = touch.clientX - startX;
+        var dy = touch.clientY - startY;
+        var newLeft = startLeft + dx;
+        var newTop = startTop + dy;
+        var ew = el.offsetWidth, eh = el.offsetHeight;
+        newLeft = Math.max(0, Math.min(window.innerWidth - ew, newLeft));
+        newTop = Math.max(0, Math.min(window.innerHeight - eh, newTop));
+        el.style.left = newLeft + 'px';
+        el.style.top = newTop + 'px';
+        el.style.right = 'auto';
+        el.style.bottom = 'auto';
+    }
+    function onEnd() {
+        isDragging = false;
+        el.style.transition = '';
+    }
+
+    handle.addEventListener('mousedown', onStart);
+    handle.addEventListener('touchstart', onStart, { passive: false });
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('touchmove', onMove, { passive: false });
+    document.addEventListener('mouseup', onEnd);
+    document.addEventListener('touchend', onEnd);
+})();
+
+/* Made by KSK Games - FACE TOGGLE: START/STOP OVERLAY CAM */
+document.getElementById('faceToggle').addEventListener('change', function() {
+    if (this.checked) { startOverlayCamera(); playFunkClick(); }
+    else { stopOverlayCamera(); playFunkClick(); }
+});
+
+/* Made by KSK Games - INIT */
+(function init() {
+    updateResBadge();
+    updateFpsBadge();
+    renderLibrary();
+    updateStorageInfo();
+    if (document.getElementById('faceToggle').checked) {
+        startOverlayCamera();
+    }
+})();
+/* Made by KSK Games - End of Script */
+</script>
+</body>
+<!-- Made by KSK Games -->
+</html>
