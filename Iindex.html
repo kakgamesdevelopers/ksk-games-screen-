@@ -1,9 +1,10 @@
+<!-- Made by KSK Games -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>KSK Games Screen Recorder 6K HD</title>
+<title>KSK Games Screen Recorder 6K HD - Made by KSK Games</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -11,8 +12,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-text-size-adjust:100%}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:3px}
-
-/* ===== HIGH VISIBILITY BG ===== */
 .bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,136,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .bg-glow{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
 .bg-glow-1{top:-120px;right:-80px;width:500px;height:500px;background:var(--accent);opacity:.14}
@@ -20,9 +19,8 @@ html,body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);
 .bg-glow-3{top:35%;left:45%;width:600px;height:600px;background:var(--purple);opacity:.07;transform:translate(-50%,-50%)}
 .bg-glow-4{top:10%;left:10%;width:300px;height:300px;background:var(--cyan);opacity:.05}
 
-/* ===== FLOATING OVERLAY ===== */
 .ksk-overlay{position:fixed;z-index:2147483647;bottom:20px;right:20px;user-select:none;-webkit-user-select:none;touch-action:none;font-family:'Orbitron',monospace;max-width:calc(100vw - 20px)}
-.ksk-overlay.collapsed .ksk-cam-panel,.ksk-overlay.collapsed .ksk-timer-bar{display:none}
+.ksk-overlay.collapsed .ksk-cam-panel,.ksk-overlay.collapsed .ksk-timer-bar,.ksk-overlay.collapsed .ksk-controls{display:none}
 .ksk-brand{background:linear-gradient(135deg,#0c0c20 0%,#161638 100%);border:2px solid rgba(0,255,136,0.5);border-radius:16px;padding:10px 16px;display:flex;align-items:center;gap:10px;cursor:grab;box-shadow:0 8px 40px rgba(0,0,0,0.8),0 0 30px rgba(0,255,136,0.2),inset 0 1px 0 rgba(255,255,255,0.06);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);transition:box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
 .ksk-brand::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,255,136,0.05),transparent);animation:brandShimmer 3s ease-in-out infinite}
 @keyframes brandShimmer{0%,100%{transform:translateX(-100%)}50%{transform:translateX(100%)}}
@@ -33,7 +31,7 @@ html,body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);
 .ksk-brand-text{display:flex;flex-direction:column;position:relative;z-index:1;line-height:1.2}
 .ksk-brand-name{font-size:.72rem;font-weight:900;color:var(--fg);letter-spacing:2px}
 .ksk-brand-name span{color:var(--accent)}
-.ksk-brand-sub{font-size:.42rem;color:var(--muted);letter-spacing:1.5px;font-weight:400}
+.ksk-brand-sub{font-size:.38rem;color:var(--muted);letter-spacing:1px;font-weight:400}
 .ksk-rec-dot{display:none;width:10px;height:10px;background:var(--danger);border-radius:50%;animation:kskRecBlink 1s ease-in-out infinite;flex-shrink:0;position:relative;z-index:1}
 @keyframes kskRecBlink{0%,100%{opacity:1;box-shadow:0 0 8px var(--danger)}50%{opacity:.15;box-shadow:none}}
 .ksk-collapse-btn{position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--muted);font-size:.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2}
@@ -72,26 +70,23 @@ html,body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);
 .ksk-cam-label-text{font-size:.45rem;color:var(--accent);font-weight:700;letter-spacing:2px;text-shadow:0 0 8px rgba(0,255,136,0.4)}
 .ksk-cam-hd-badge{font-size:.4rem;background:linear-gradient(135deg,var(--accent),#00aa55);color:#000;padding:2px 10px;border-radius:20px;font-weight:900;letter-spacing:1px}
 
-/* ===== HEADER ===== */
 header{position:relative;z-index:10;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);background:rgba(5,5,16,.9)}
 .logo{display:flex;align-items:center;gap:12px}
 .logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#00aa55);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#000;font-weight:900;box-shadow:0 0 28px rgba(0,255,136,.4);animation:logoPulse 2s ease-in-out infinite;flex-shrink:0}
 @keyframes logoPulse{0%,100%{box-shadow:0 0 28px rgba(0,255,136,.4)}50%{box-shadow:0 0 45px rgba(0,255,136,.65)}}
 .logo-text{font-family:'Orbitron',monospace;font-weight:900;font-size:1.15rem;letter-spacing:2px}
 .logo-text span{color:var(--accent)}
-.logo-sub{font-size:.52rem;color:var(--muted);letter-spacing:1px;margin-top:-2px}
+.logo-sub{font-size:.48rem;color:var(--muted);letter-spacing:1px;margin-top:-2px}
 .badge{font-family:'Orbitron',monospace;font-size:.5rem;padding:4px 12px;background:linear-gradient(135deg,var(--accent),#00aa55);color:#000;font-weight:700;border-radius:20px;letter-spacing:1px;white-space:nowrap}
 .header-right{display:flex;align-items:center;gap:16px}
 .header-stat{font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:5px}
 .header-stat i{color:var(--accent);font-size:.6rem}
 
-/* ===== MAIN LAYOUT ===== */
-main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16px 50px}
+main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16px 20px}
 .app-grid{display:grid;grid-template-columns:320px 1fr;gap:20px}
 .sidebar{display:flex;flex-direction:column;gap:14px}
 .main-area{display:flex;flex-direction:column;gap:16px}
 
-/* ===== PANELS ===== */
 .panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;transition:border-color .3s,box-shadow .3s}
 .panel:hover{border-color:rgba(0,255,136,.25);box-shadow:0 0 20px rgba(0,255,136,.05)}
 .panel-title{font-family:'Orbitron',monospace;font-size:.65rem;font-weight:700;letter-spacing:2px;color:var(--muted);margin-bottom:14px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
@@ -114,13 +109,11 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
 .toggle input:checked+.slider{background:rgba(0,255,136,.15);border-color:var(--accent)}
 .toggle input:checked+.slider::before{transform:translateX(20px);background:var(--accent);box-shadow:0 0 10px rgba(0,255,136,.6)}
 
-/* ===== FPS / RES HIGHLIGHT BADGES ===== */
 .fps-highlight{display:inline-block;font-family:'Orbitron',monospace;font-size:.6rem;padding:2px 8px;border-radius:6px;margin-left:6px;font-weight:700;vertical-align:middle;letter-spacing:.5px}
 .fps-highlight.ultra{background:rgba(0,221,255,0.15);color:var(--cyan);border:1px solid rgba(0,221,255,0.3);text-shadow:0 0 6px rgba(0,221,255,0.3)}
 .fps-highlight.high{background:rgba(0,255,136,0.12);color:var(--accent);border:1px solid rgba(0,255,136,0.25)}
 .res-highlight{display:inline-block;font-family:'Orbitron',monospace;font-size:.55rem;padding:2px 8px;border-radius:6px;margin-left:6px;font-weight:700;vertical-align:middle;letter-spacing:.5px;background:rgba(255,187,0,0.12);color:var(--warn);border:1px solid rgba(255,187,0,0.25);text-shadow:0 0 6px rgba(255,187,0,0.3)}
 
-/* ===== PREVIEW ===== */
 .preview-wrap{position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;min-height:320px;display:flex;align-items:center;justify-content:center}
 .preview-wrap.active{border-color:var(--accent);box-shadow:0 0 35px var(--glow)}
 .preview-wrap.recording{border-color:var(--danger);box-shadow:0 0 35px rgba(255,34,68,.25);animation:recBorder 1.5s ease-in-out infinite}
@@ -142,8 +135,10 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
 .face-preview.visible{display:block}
 .face-preview video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
 .face-label{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font-size:.5rem;background:rgba(0,0,0,.75);color:var(--accent);padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:1px}
+.watermark-overlay{position:absolute;bottom:14px;left:14px;font-family:'Orbitron',monospace;font-size:.65rem;font-weight:700;color:rgba(0,255,136,0.75);text-shadow:0 0 10px rgba(0,0,0,0.9),0 0 20px rgba(0,0,0,0.7),1px 1px 3px rgba(0,0,0,1);letter-spacing:2px;z-index:5;display:none;pointer-events:none;animation:watermarkPulse 2s ease-in-out infinite}
+.watermark-overlay.visible{display:block}
+@keyframes watermarkPulse{0%,100%{opacity:.75}50%{opacity:1}}
 
-/* ===== CONTROLS BAR ===== */
 .controls-bar{display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:16px;flex-wrap:wrap}
 .ctrl-btn{display:flex;align-items:center;gap:8px;padding:12px 22px;border:none;border-radius:12px;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
 .ctrl-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);opacity:0;transition:opacity .3s}
@@ -161,7 +156,6 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
 .btn-pause:disabled{opacity:.25;cursor:not-allowed;transform:none!important}
 .ctrl-divider{width:1px;height:36px;background:var(--border)}
 
-/* ===== STATUS BAR ===== */
 .status-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;font-size:.72rem;color:var(--muted);flex-wrap:wrap;gap:8px}
 .status-item{display:flex;align-items:center;gap:6px}
 .status-dot{width:7px;height:7px;border-radius:50%;background:var(--muted)}
@@ -169,7 +163,6 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
 .status-dot.rec{background:var(--danger);box-shadow:0 0 8px var(--danger);animation:recBlink 1s infinite}
 .status-dot.paused{background:var(--warn);box-shadow:0 0 8px var(--warn)}
 
-/* ===== LIBRARY ===== */
 .library-section{margin-top:4px}
 .library-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .library-title{font-family:'Orbitron',monospace;font-size:.65rem;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:8px}
@@ -190,6 +183,7 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
 .video-card-meta{display:flex;align-items:center;gap:12px;font-size:.62rem;color:var(--muted);margin-bottom:10px;flex-wrap:wrap}
 .video-card-meta span{display:flex;align-items:center;gap:4px}
 .video-card-meta i{font-size:.58rem}
+.video-card-ksk-credit{font-size:.55rem;color:var(--accent);font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:4px;margin-bottom:8px;font-family:'Orbitron',monospace;text-shadow:0 0 6px rgba(0,255,136,0.3)}
 .video-card-actions{display:flex;gap:8px;flex-wrap:wrap}
 .vc-btn{padding:6px 14px;border:none;border-radius:8px;font-family:'Poppins',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:5px}
 .vc-btn:hover{transform:translateY(-1px)}
@@ -202,8 +196,8 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
 .empty-state{text-align:center;padding:40px 20px;color:var(--muted)}
 .empty-state i{font-size:2.5rem;opacity:.25;margin-bottom:12px;display:block}
 .empty-state p{font-size:.8rem}
+.empty-state .ksk-credit-empty{font-size:.6rem;color:var(--accent);margin-top:8px;font-family:'Orbitron',monospace;letter-spacing:1px;opacity:.7}
 
-/* ===== TOAST ===== */
 .toast-container{position:fixed;top:16px;right:16px;z-index:2147483646;display:flex;flex-direction:column;gap:10px;pointer-events:none;max-width:calc(100vw - 20px)}
 .toast{padding:14px 18px;border-radius:12px;font-size:.8rem;font-weight:500;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid;transform:translateX(120%);transition:transform .4s cubic-bezier(.175,.885,.32,1.275);display:flex;align-items:center;gap:10px;max-width:380px;box-shadow:0 10px 40px rgba(0,0,0,.5);pointer-events:auto}
 .toast.show{transform:translateX(0)}
@@ -211,7 +205,6 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
 .toast-error{background:rgba(255,34,68,.12);border-color:rgba(255,34,68,.3);color:var(--danger)}
 .toast-info{background:rgba(100,100,220,.12);border-color:rgba(100,100,220,.3);color:#9999ee}
 
-/* ===== MODAL ===== */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
 .modal-overlay.visible{display:flex}
 .modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
@@ -224,21 +217,25 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
 .modal-info p{font-size:.78rem;color:var(--muted);line-height:1.5}
 .modal-info .mi-meta{display:flex;gap:14px;margin-top:10px;font-size:.68rem;color:var(--muted);flex-wrap:wrap}
 .modal-info .mi-meta span{display:flex;align-items:center;gap:4px}
+.modal-ksk-credit{font-size:.6rem;color:var(--accent);font-weight:700;letter-spacing:1px;margin-top:10px;font-family:'Orbitron',monospace;display:flex;align-items:center;gap:6px;text-shadow:0 0 6px rgba(0,255,136,0.3)}
 
-/* ===== TIPS BAR ===== */
 .tips-bar{display:flex;gap:12px;flex-wrap:wrap;padding:12px 16px;background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.1);border-radius:12px}
 .tip{display:flex;align-items:center;gap:6px;font-size:.68rem;color:var(--muted)}
 .tip i{color:var(--accent);font-size:.6rem}
+.tip.ksk-tip{color:var(--accent);font-weight:600;font-family:'Orbitron',monospace;font-size:.55rem;letter-spacing:1px}
 
-/* ===== SHORTCUT HINT ===== */
 .shortcut-hint{position:absolute;bottom:14px;left:14px;font-size:.55rem;color:var(--muted);background:rgba(0,0,0,.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:5px 10px;border-radius:6px;z-index:5;display:flex;gap:10px;opacity:.7}
 .shortcut-hint kbd{background:var(--bg2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-family:'Orbitron',monospace;font-size:.5rem;color:var(--accent)}
 
-/* ===== MOBILE TOGGLE SIDEBAR ===== */
+.ksk-footer{position:relative;z-index:10;text-align:center;padding:24px 16px;font-family:'Orbitron',monospace;font-size:.55rem;color:var(--muted);letter-spacing:2px;border-top:1px solid var(--border);margin-top:24px;background:linear-gradient(180deg,transparent,rgba(0,255,136,0.02))}
+.ksk-footer span{color:var(--accent);font-weight:900;text-shadow:0 0 10px rgba(0,255,136,0.4)}
+.ksk-footer .ksk-footer-icon{font-size:.7rem;color:var(--accent);margin-right:6px}
+
 .mobile-sidebar-toggle{display:none;position:fixed;bottom:90px;left:14px;z-index:999;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#00aa55);color:#000;border:none;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 20px rgba(0,255,136,.4);align-items:center;justify-content:center;transition:all .3s}
 .mobile-sidebar-toggle:active{transform:scale(.9)}
 
-/* ===== RESPONSIVE ===== */
+#watermarkCanvas{display:none}
+
 @media(max-width:1024px){
   .app-grid{grid-template-columns:1fr}
   .sidebar{order:2}
@@ -275,6 +272,8 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
   .video-card-actions{gap:6px}
   .vc-btn{padding:5px 10px;font-size:.62rem}
   .toast{font-size:.72rem;padding:10px 14px;max-width:300px}
+  .watermark-overlay{font-size:.5rem;letter-spacing:1px}
+  .ksk-footer{font-size:.45rem;padding:16px 10px}
 }
 @media(max-width:380px){
   .logo-sub{display:none}
@@ -284,7 +283,6 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
   .ksk-timer{font-size:.7rem;min-width:60px}
 }
 
-/* ===== ANIMATIONS ===== */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .panel,.preview-wrap,.controls-bar,.status-bar,.library-section,.tips-bar{animation:fadeUp .6s ease-out both}
 .panel:nth-child(2){animation-delay:.1s}
@@ -307,16 +305,17 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
 <div class="bg-glow bg-glow-3"></div>
 <div class="bg-glow bg-glow-4"></div>
 
-<!-- MOBILE SIDEBAR TOGGLE -->
+<canvas id="watermarkCanvas"></canvas>
+
 <button class="mobile-sidebar-toggle" id="mobileSidebarBtn" aria-label="Toggle settings"><i class="fas fa-cog"></i></button>
 
-<!-- ===== FLOATING OVERLAY ===== -->
+<!-- FLOATING OVERLAY -->
 <div class="ksk-overlay" id="kskOverlay">
   <div class="ksk-brand" id="kskBrand">
     <div class="ksk-logo-mini">K</div>
     <div class="ksk-brand-text">
       <div class="ksk-brand-name">KSK <span>GAMES</span></div>
-      <div class="ksk-brand-sub">6K HD RECORDER</div>
+      <div class="ksk-brand-sub">6K HD - Made by KSK Games</div>
     </div>
     <div class="ksk-rec-dot" id="kskRecDot"></div>
     <button class="ksk-collapse-btn" id="kskCollapseBtn" title="Toggle panel" aria-label="Toggle panel"><i class="fas fa-chevron-down"></i></button>
@@ -352,23 +351,23 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
   </div>
 </div>
 
-<!-- ===== HEADER ===== -->
+<!-- HEADER -->
 <header>
   <div class="logo">
     <div class="logo-icon">K</div>
     <div>
       <div class="logo-text">KSK <span>GAMES</span></div>
-      <div class="logo-sub">SCREEN RECORDER</div>
+      <div class="logo-sub">SCREEN RECORDER - Made by KSK Games</div>
     </div>
   </div>
   <div class="badge">6K HD READY</div>
   <div class="header-right">
-    <div class="header-stat"><i class="fas fa-circle" style="color:var(--accent)"></i> Ready</div>
+    <div class="header-stat" id="headerStatusDot"><i class="fas fa-circle" style="color:var(--accent)"></i> Ready</div>
     <div class="header-stat"><i class="fas fa-microchip"></i> <span id="browserInfo">Detecting...</span></div>
   </div>
 </header>
 
-<!-- ===== MAIN ===== -->
+<!-- MAIN -->
 <main>
   <div class="app-grid">
     <!-- SIDEBAR -->
@@ -388,7 +387,6 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
           <textarea id="videoDesc" placeholder="Describe your video..." maxlength="500"></textarea>
         </div>
       </div>
-
       <div class="panel">
         <div class="panel-title"><i class="fas fa-sliders-h"></i> Recording Settings</div>
         <div class="form-group">
@@ -449,6 +447,7 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
           <video id="faceVideo" autoplay muted playsinline></video>
           <div class="face-label">FACE CAM</div>
         </div>
+        <div class="watermark-overlay" id="watermarkOverlay"><i class="fas fa-crown" style="margin-right:4px"></i> Recorded by KSK Games</div>
         <div class="shortcut-hint">
           <span><kbd>R</kbd> Record</span>
           <span><kbd>P</kbd> Pause</span>
@@ -474,8 +473,9 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
       <div class="tips-bar">
         <div class="tip"><i class="fas fa-lightbulb"></i> Drag the floating toolbar anywhere</div>
         <div class="tip"><i class="fas fa-lightbulb"></i> 120/90 FPS for ultra-smooth capture</div>
-        <div class="tip"><i class="fas fa-lightbulb"></i> 16 HD & 12 HD resolutions added</div>
+        <div class="tip"><i class="fas fa-lightbulb"></i> Videos play back in the library below</div>
         <div class="tip"><i class="fas fa-lightbulb"></i> Works on mobile & laptop</div>
+        <div class="tip ksk-tip"><i class="fas fa-crown"></i> Made by KSK Games</div>
       </div>
 
       <div class="library-section">
@@ -488,14 +488,18 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
           <input type="text" id="searchInput" placeholder="Search by name, title, or description...">
         </div>
         <div class="video-list" id="videoList">
-          <div class="empty-state"><i class="fas fa-video-slash"></i><p>No recordings yet. Hit Start to begin!</p></div>
+          <div class="empty-state" id="emptyState"><i class="fas fa-video-slash"></i><p>No recordings yet. Hit Start to begin!</p><div class="ksk-credit-empty"><i class="fas fa-crown"></i> Made by KSK Games</div></div>
         </div>
       </div>
     </div>
   </div>
 </main>
 
-<!-- ===== PLAYBACK MODAL ===== -->
+<footer class="ksk-footer">
+  <i class="fas fa-crown ksk-footer-icon"></i> Made by <span>KSK Games</span> &mdash; All Rights Reserved
+</footer>
+
+<!-- PLAYBACK MODAL -->
 <div class="modal-overlay" id="playModal">
   <div class="modal">
     <button class="modal-close" id="modalCloseBtn" aria-label="Close"><i class="fas fa-times"></i></button>
@@ -505,6 +509,7 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
       <div class="mi-title" id="modalTitle"></div>
       <p id="modalDesc"></p>
       <div class="mi-meta" id="modalMeta"></div>
+      <div class="modal-ksk-credit"><i class="fas fa-crown"></i> Recorded by KSK Games</div>
     </div>
   </div>
 </div>
@@ -513,11 +518,12 @@ main{position:relative;z-index:10;max-width:1500px;margin:0 auto;padding:20px 16
 
 <script>
 /* ============================================
-   KSK GAMES SCREEN RECORDER — FULL REBUILD
-   120/90 FPS, 16 HD, 12 HD, Mobile/Laptop
+   Made by KSK Games — COMPLETE REBUILD
+   Fixed: video playback, recording flow,
+   state management, blob URL lifecycle
    ============================================ */
 
-/* ===== Lazy Audio Context ===== */
+// ---- AUDIO CONTEXT (lazy init) ----
 var _audioCtx = null;
 function getAudioCtx() {
     if (!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -525,7 +531,7 @@ function getAudioCtx() {
     return _audioCtx;
 }
 
-/* ===== SOUND: Funk Click ===== */
+// ---- SOUND EFFECTS ----
 function playFunkClick() {
     try {
         var ctx = getAudioCtx(), now = ctx.currentTime;
@@ -544,7 +550,6 @@ function playFunkClick() {
     } catch(e) {}
 }
 
-/* ===== SOUND: Funk Record Start ===== */
 function playFunkRecordStart() {
     try {
         var ctx = getAudioCtx(), now = ctx.currentTime;
@@ -562,16 +567,9 @@ function playFunkRecordStart() {
         mg.gain.setValueAtTime(0.18, now + 0.12); mg.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
         o1.connect(w); o2.connect(w); w.connect(mg); mg.connect(ctx.destination);
         o1.start(now); o2.start(now); o1.stop(now + 0.3); o2.stop(now + 0.3);
-        var cl = Math.floor(ctx.sampleRate * 0.015);
-        var cb = ctx.createBuffer(1, cl, ctx.sampleRate); var cd = cb.getChannelData(0);
-        for (var i = 0; i < cl; i++) cd[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / cl, 12);
-        var cs = ctx.createBufferSource(); cs.buffer = cb;
-        var cg = ctx.createGain(); cg.gain.setValueAtTime(0.5, now); cg.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
-        cs.connect(cg); cg.connect(ctx.destination); cs.start(now); cs.stop(now + 0.015);
     } catch(e) {}
 }
 
-/* ===== SOUND: Funk Record Stop ===== */
 function playFunkRecordStop() {
     try {
         var ctx = getAudioCtx(), now = ctx.currentTime;
@@ -593,7 +591,6 @@ function playFunkRecordStop() {
     } catch(e) {}
 }
 
-/* ===== SOUND: Funk Pause/Resume ===== */
 function playFunkPause() {
     try {
         var ctx = getAudioCtx(), now = ctx.currentTime;
@@ -606,16 +603,10 @@ function playFunkPause() {
             g.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
             o.connect(f); f.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + 0.1);
         }
-        var cl = Math.floor(ctx.sampleRate * 0.01);
-        var cb = ctx.createBuffer(1, cl, ctx.sampleRate); var cd = cb.getChannelData(0);
-        for (var i = 0; i < cl; i++) cd[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / cl, 15);
-        var cs = ctx.createBufferSource(); cs.buffer = cb;
-        var cg = ctx.createGain(); cg.gain.setValueAtTime(0.4, now); cg.gain.exponentialRampToValueAtTime(0.001, now + 0.01);
-        cs.connect(cg); cg.connect(ctx.destination); cs.start(now); cs.stop(now + 0.01);
     } catch(e) {}
 }
 
-/* ===== STATE ===== */
+// ---- STATE ----
 var mediaRecorder = null;
 var recordedChunks = [];
 var isRecording = false;
@@ -626,733 +617,837 @@ var elapsedBeforePause = 0;
 var screenStream = null;
 var micStream = null;
 var faceStream = null;
-var overlayCamStream = null;
 var combinedStream = null;
-var selectedMime = '';
+var videos = []; // Array of { id, name, title, desc, blobUrl, date, duration, res, fps, size }
 
-/* ===== BROWSER DETECTION ===== */
+// ---- DOM REFS ----
+var $ = function(id) { return document.getElementById(id); };
+var kskOverlay = $('kskOverlay');
+var kskBrand = $('kskBrand');
+var kskTimer = $('kskTimer');
+var kskFpsBadge = $('kskFpsBadge');
+var kskMicInd = $('kskMicInd');
+var kskSysInd = $('kskSysInd');
+var kskBtnStart = $('kskBtnStart');
+var kskBtnPause = $('kskBtnPause');
+var kskBtnStop = $('kskBtnStop');
+var kskCamVideo = $('kskCamVideo');
+var kskCamPlaceholder = $('kskCamPlaceholder');
+var kskCamPanel = $('kskCamPanel');
+var previewVideo = $('previewVideo');
+var previewPlaceholder = $('previewPlaceholder');
+var previewWrap = $('previewWrap');
+var recIndicator = $('recIndicator');
+var recTime = $('recTime');
+var resBadge = $('resBadge');
+var watermarkOverlay = $('watermarkOverlay');
+var facePreview = $('facePreview');
+var faceVideo = $('faceVideo');
+var btnRecord = $('btnRecord');
+var btnPause = $('btnPause');
+var btnStop = $('btnStop');
+var btnTestCam = $('btnTestCam');
+var statusDot = $('statusDot');
+var statusText = $('statusText');
+var headerStatusDot = $('headerStatusDot');
+var videoList = $('videoList');
+var emptyState = $('emptyState');
+var playModal = $('playModal');
+var modalVideo = $('modalVideo');
+var modalCloseBtn = $('modalCloseBtn');
+var searchInput = $('searchInput');
+
+// ---- BROWSER DETECTION ----
 (function() {
     var ua = navigator.userAgent;
     var name = 'Chrome';
     if (ua.indexOf('Firefox') !== -1) name = 'Firefox';
     else if (ua.indexOf('Edg') !== -1) name = 'Edge';
     else if (ua.indexOf('Safari') !== -1 && ua.indexOf('Chrome') === -1) name = 'Safari';
-    /* Detect mobile */
     var isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(ua);
-    document.getElementById('browserInfo').textContent = name + (isMobile ? ' Mobile' : ' Desktop');
+    $('browserInfo').textContent = name + (isMobile ? ' Mobile' : ' Desktop');
 })();
 
-/* ===== RESOLUTION / FPS LABELS ===== */
+// ---- LABEL MAPS ----
 var resLabels = {
-    '7680x4320': '8K UHD',
-    '6016x3384': '6K UHD',
-    '3840x2160': '4K UHD',
-    '2560x1440': '2K QHD',
-    '1920x1080': 'FHD 1080p',
-    '1536x864': '16 HD',
-    '1280x720': '12 HD'
+    '7680x4320': '8K UHD', '6016x3384': '6K UHD', '3840x2160': '4K UHD',
+    '2560x1440': '2K QHD', '1920x1080': 'FHD 1080p', '1536x864': '16 HD', '1280x720': '12 HD'
 };
 var fpsLabels = { '120': '120 FPS', '90': '90 FPS', '60': '60 FPS', '30': '30 FPS' };
 
+function getResLabel() { return resLabels[$('resSelect').value] || $('resSelect').value; }
+function getFpsLabel() { return fpsLabels[$('fpsSelect').value] || $('fpsSelect').value + ' FPS'; }
+
 function updateResBadge() {
-    var v = document.getElementById('resSelect').value;
-    var label = resLabels[v] || v;
-    document.getElementById('resBadge').innerHTML = label + ' <span class="fps-live-badge" id="fpsLiveBadge">' + fpsLabels[document.getElementById('fpsSelect').value] + '</span>';
-    document.getElementById('resHighlightBadge').textContent = label;
+    $('resBadge').innerHTML = getResLabel() + ' <span class="fps-live-badge" id="fpsLiveBadge">' + getFpsLabel() + '</span>';
+    $('resHighlightBadge').textContent = getResLabel();
 }
 
 function updateFpsBadge() {
-    var v = document.getElementById('fpsSelect').value;
+    var v = $('fpsSelect').value;
     var label = fpsLabels[v] || v + ' FPS';
-    var badge = document.getElementById('fpsHighlightBadge');
+    var badge = $('fpsHighlightBadge');
     badge.textContent = label;
     badge.className = 'fps-highlight ' + (parseInt(v) >= 90 ? 'ultra' : 'high');
-    document.getElementById('fpsDisplay').textContent = label + ' selected';
-    /* Update res badge inner fps */
+    $('fpsDisplay').textContent = label + ' selected';
     var flb = document.getElementById('fpsLiveBadge');
     if (flb) flb.textContent = label;
 }
 
-document.getElementById('resSelect').addEventListener('change', function() { updateResBadge(); playFunkClick(); });
-document.getElementById('fpsSelect').addEventListener('change', function() { updateFpsBadge(); playFunkClick(); });
+ $('resSelect').addEventListener('change', function() { updateResBadge(); playFunkClick(); });
+ $('fpsSelect').addEventListener('change', function() { updateFpsBadge(); playFunkClick(); });
 
-/* ===== TOAST ===== */
-function showToast(message, type) {
-    type = type || 'success';
-    var container = document.getElementById('toastContainer');
-    var toast = document.createElement('div');
-    toast.className = 'toast toast-' + type;
-    var icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-info-circle' };
-    toast.innerHTML = '<i class="fas ' + (icons[type] || icons.info) + '"></i> ' + message;
-    container.appendChild(toast);
-    requestAnimationFrame(function() {
-        requestAnimationFrame(function() { toast.classList.add('show'); });
-    });
+// ---- TOAST ----
+function showToast(msg, type) {
+    type = type || 'info';
+    var t = document.createElement('div');
+    t.className = 'toast toast-' + type;
+    var icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
+    t.innerHTML = '<i class="fas ' + icon + '"></i><span>' + msg + '</span>';
+    $('toastContainer').appendChild(t);
+    requestAnimationFrame(function() { t.classList.add('show'); });
     setTimeout(function() {
-        toast.classList.remove('show');
-        setTimeout(function() { if (toast.parentNode) toast.remove(); }, 400);
+        t.classList.remove('show');
+        setTimeout(function() { if (t.parentNode) t.parentNode.removeChild(t); }, 400);
     }, 3500);
 }
 
-/* ===== TIMER ===== */
+// ---- TIMER FORMATTING ----
 function formatTime(ms) {
-    var t = Math.floor(ms / 1000);
-    var h = String(Math.floor(t / 3600)).padStart(2, '0');
-    var m = String(Math.floor((t % 3600) / 60)).padStart(2, '0');
-    var s = String(t % 60).padStart(2, '0');
-    return h + ':' + m + ':' + s;
+    var totalSec = Math.floor(ms / 1000);
+    var h = Math.floor(totalSec / 3600);
+    var m = Math.floor((totalSec % 3600) / 60);
+    var s = totalSec % 60;
+    return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
 }
-function startTimer() {
-    startTime = Date.now(); elapsedBeforePause = 0;
-    timerInterval = setInterval(function() {
-        if (!isPaused) {
-            var e = elapsedBeforePause + (Date.now() - startTime);
-            var txt = formatTime(e);
-            document.getElementById('recTime').textContent = txt;
-            var kt = document.getElementById('kskTimer');
-            kt.textContent = txt;
-            kt.classList.remove('not-recording');
-        }
-    }, 200);
-}
-function stopTimer() { clearInterval(timerInterval); timerInterval = null; }
-function getElapsedMs() { return startTime ? elapsedBeforePause + (Date.now() - startTime) : 0; }
 
-/* ===== FIND SUPPORTED MIME ===== */
-function findSupportedMime() {
-    var types = ['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm','video/mp4'];
-    for (var i = 0; i < types.length; i++) { if (MediaRecorder.isTypeSupported(types[i])) return types[i]; }
+function startTimer() {
+    startTime = Date.now();
+    timerInterval = setInterval(function() {
+        var elapsed = elapsedBeforePause + (Date.now() - startTime);
+        var str = formatTime(elapsed);
+        recTime.textContent = str;
+        kskTimer.textContent = str;
+    }, 100);
+}
+
+function stopTimer() {
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+    var elapsed = elapsedBeforePause + (Date.now() - startTime);
+    return elapsed;
+}
+
+function resetTimerDisplay() {
+    recTime.textContent = '00:00:00';
+    kskTimer.textContent = '00:00:00';
+    elapsedBeforePause = 0;
+}
+
+// ---- UI STATE UPDATE ----
+function setUIState(state) {
+    // state: 'ready', 'recording', 'paused'
+    if (state === 'ready') {
+        isRecording = false;
+        isPaused = false;
+        // Overlay buttons
+        kskBtnStart.classList.remove('is-recording');
+        kskBtnStart.querySelector('span').textContent = 'START';
+        kskBtnStart.querySelector('i').className = 'fas fa-circle';
+        kskBtnPause.disabled = true;
+        kskBtnStop.disabled = true;
+        kskBrand.classList.remove('recording');
+        kskTimer.classList.add('not-recording');
+        kskFpsBadge.style.display = 'none';
+        kskMicInd.style.display = 'none';
+        kskSysInd.style.display = 'none';
+        // Main buttons
+        btnRecord.classList.remove('recording');
+        btnRecord.innerHTML = '<i class="fas fa-circle"></i> Record';
+        btnPause.disabled = true;
+        btnPause.innerHTML = '<i class="fas fa-pause"></i> Pause';
+        btnStop.disabled = true;
+        // Preview
+        previewWrap.classList.remove('recording', 'active');
+        recIndicator.classList.remove('visible');
+        resBadge.classList.remove('visible');
+        watermarkOverlay.classList.remove('visible');
+        // Status
+        statusDot.className = 'status-dot ready';
+        statusText.textContent = 'Ready to Record';
+        headerStatusDot.innerHTML = '<i class="fas fa-circle" style="color:var(--accent)"></i> Ready';
+    } else if (state === 'recording') {
+        isRecording = true;
+        isPaused = false;
+        // Overlay buttons
+        kskBtnStart.classList.add('is-recording');
+        kskBtnStart.querySelector('span').textContent = 'REC';
+        kskBtnStart.querySelector('i').className = 'fas fa-circle';
+        kskBtnPause.disabled = false;
+        kskBtnStop.disabled = false;
+        kskBrand.classList.add('recording');
+        kskTimer.classList.remove('not-recording');
+        kskFpsBadge.style.display = '';
+        kskFpsBadge.textContent = getFpsLabel();
+        // Show audio indicators based on toggles
+        kskMicInd.style.display = $('audioToggle').checked ? '' : 'none';
+        kskSysInd.style.display = $('sysAudioToggle').checked ? '' : 'none';
+        // Main buttons
+        btnRecord.classList.add('recording');
+        btnRecord.innerHTML = '<i class="fas fa-circle"></i> Recording...';
+        btnPause.disabled = false;
+        btnPause.innerHTML = '<i class="fas fa-pause"></i> Pause';
+        btnStop.disabled = false;
+        // Preview
+        previewWrap.classList.add('recording');
+        previewWrap.classList.add('active');
+        recIndicator.classList.add('visible');
+        resBadge.classList.add('visible');
+        watermarkOverlay.classList.add('visible');
+        // Status
+        statusDot.className = 'status-dot rec';
+        statusText.textContent = 'Recording in Progress';
+        headerStatusDot.innerHTML = '<i class="fas fa-circle" style="color:var(--danger)"></i> Recording';
+    } else if (state === 'paused') {
+        isPaused = true;
+        // Overlay
+        kskBtnStart.classList.remove('is-recording');
+        kskBtnStart.querySelector('span').textContent = 'RESUME';
+        kskBtnStart.querySelector('i').className = 'fas fa-play';
+        kskBrand.classList.remove('recording');
+        kskTimer.classList.add('not-recording');
+        // Main
+        btnRecord.classList.remove('recording');
+        btnRecord.innerHTML = '<i class="fas fa-play"></i> Resume';
+        btnPause.innerHTML = '<i class="fas fa-play"></i> Resumed';
+        btnPause.disabled = true;
+        // Preview
+        previewWrap.classList.remove('recording');
+        // Status
+        statusDot.className = 'status-dot paused';
+        statusText.textContent = 'Recording Paused';
+        headerStatusDot.innerHTML = '<i class="fas fa-circle" style="color:var(--warn)"></i> Paused';
+    }
+}
+
+// ---- GET BEST MIME TYPE ----
+function getBestMimeType() {
+    var types = [
+        'video/webm;codecs=vp9,opus',
+        'video/webm;codecs=vp8,opus',
+        'video/webm;codecs=vp9',
+        'video/webm;codecs=vp8',
+        'video/webm',
+        'video/mp4'
+    ];
+    for (var i = 0; i < types.length; i++) {
+        if (MediaRecorder.isTypeSupported(types[i])) return types[i];
+    }
     return '';
 }
 
-/* ===== INDEXEDDB STORAGE ===== */
-var DB_NAME = 'KSKGamesRecorder';
-var DB_VER = 2;
-var STORE = 'videos';
-
-function openDB() {
-    return new Promise(function(resolve, reject) {
-        var req = indexedDB.open(DB_NAME, DB_VER);
-        req.onupgradeneeded = function(e) {
-            var db = e.target.result;
-            if (!db.objectStoreNames.contains(STORE)) db.createObjectStore(STORE, { keyPath: 'name' });
-        };
-        req.onsuccess = function(e) { resolve(e.target.result); };
-        req.onerror = function(e) { reject(e.target.error); };
-    });
-}
-function saveVideoToDB(record) {
-    return openDB().then(function(db) {
-        return new Promise(function(resolve, reject) {
-            var tx = db.transaction(STORE, 'readwrite');
-            tx.objectStore(STORE).put(record);
-            tx.oncomplete = function() { resolve(); };
-            tx.onerror = function(e) { reject(e.target.error); };
-        });
-    });
-}
-function getVideoFromDB(name) {
-    return openDB().then(function(db) {
-        return new Promise(function(resolve, reject) {
-            var tx = db.transaction(STORE, 'readonly');
-            var req = tx.objectStore(STORE).get(name);
-            req.onsuccess = function() { resolve(req.result); };
-            req.onerror = function(e) { reject(e.target.error); };
-        });
-    });
-}
-function deleteVideoFromDB(name) {
-    return openDB().then(function(db) {
-        return new Promise(function(resolve, reject) {
-            var tx = db.transaction(STORE, 'readwrite');
-            tx.objectStore(STORE).delete(name);
-            tx.oncomplete = function() { resolve(); };
-            tx.onerror = function(e) { reject(e.target.error); };
-        });
-    });
-}
-function getAllVideosFromDB() {
-    return openDB().then(function(db) {
-        return new Promise(function(resolve, reject) {
-            var tx = db.transaction(STORE, 'readonly');
-            var req = tx.objectStore(STORE).getAll();
-            req.onsuccess = function() { resolve(req.result || []); };
-            req.onerror = function(e) { reject(e.target.error); };
-        });
-    });
-}
-function getLibrary() { return JSON.parse(localStorage.getItem('ksk_lib') || '[]'); }
-function saveLibrary(lib) { localStorage.setItem('ksk_lib', JSON.stringify(lib)); }
-function updateStorageInfo() {
-    var lib = getLibrary();
-    var count = lib.length;
-    var totalBytes = 0;
-    for (var i = 0; i < lib.length; i++) totalBytes += (lib[i].size || 0);
-    document.getElementById('storageUsed').textContent = count + ' video' + (count !== 1 ? 's' : '') + ' saved';
-    document.getElementById('storageSize').textContent = (totalBytes / (1024 * 1024)).toFixed(1) + ' MB used';
-    document.getElementById('libCount').textContent = count + ' video' + (count !== 1 ? 's' : '');
+// ---- STOP ALL STREAMS ----
+function stopStream(stream) {
+    if (stream) {
+        stream.getTracks().forEach(function(track) { track.stop(); });
+    }
 }
 
-/* ===== AUTO SAVE VIDEO AFTER STOP ===== */
-function autoSaveVideo() {
-    if (recordedChunks.length === 0) return;
-    var blob = new Blob(recordedChunks, { type: selectedMime || 'video/webm' });
-    var url = URL.createObjectURL(blob);
-    var vName = document.getElementById('videoName').value.trim();
-    var vTitle = document.getElementById('videoTitle').value.trim();
-    var vDesc = document.getElementById('videoDesc').value.trim();
-    var res = document.getElementById('resSelect').value;
-    var fps = document.getElementById('fpsSelect').value;
-    var elapsed = getElapsedMs();
-    var lib = getLibrary();
-    var record = {
+// ---- START FACE CAM ----
+function startFaceCam() {
+    return navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'user' }, audio: false })
+    .then(function(stream) {
+        faceStream = stream;
+        kskCamVideo.srcObject = stream;
+        kskCamVideo.style.display = '';
+        kskCamPlaceholder.style.display = 'none';
+        kskCamPanel.classList.remove('no-cam');
+        faceVideo.srcObject = stream;
+        facePreview.classList.add('visible');
+        return stream;
+    })
+    .catch(function() {
+        // Face cam not available - continue without it
+        kskCamPanel.classList.add('no-cam');
+        return null;
+    });
+}
+
+// ---- STOP FACE CAM ----
+function stopFaceCam() {
+    stopStream(faceStream);
+    faceStream = null;
+    kskCamVideo.srcObject = null;
+    kskCamVideo.style.display = 'none';
+    kskCamPlaceholder.style.display = '';
+    kskCamPanel.classList.add('no-cam');
+    faceVideo.srcObject = null;
+    facePreview.classList.remove('visible');
+}
+
+// ---- START RECORDING ----
+function startRecording() {
+    if (isRecording && !isPaused) return; // Already recording
+
+    // If paused, just resume
+    if (isPaused) {
+        resumeRecording();
+        return;
+    }
+
+    var resVal = $('resSelect').value;
+    var resParts = resVal.split('x');
+    var reqW = parseInt(resParts[0]);
+    var reqH = parseInt(resParts[1]);
+    var reqFps = parseInt($('fpsSelect').value);
+    var useMic = $('audioToggle').checked;
+    var useSysAudio = $('sysAudioToggle').checked;
+    var useFace = $('faceToggle').checked;
+
+    // Build displayMedia constraints
+    var displayConstraints = {
+        video: { width: { ideal: reqW }, height: { ideal: reqH }, frameRate: { ideal: reqFps } },
+        audio: useSysAudio
+    };
+
+    // Request screen capture
+    navigator.mediaDevices.getDisplayMedia(displayConstraints)
+    .then(function(sStream) {
+        screenStream = sStream;
+        // Show preview
+        previewVideo.srcObject = sStream;
+        previewVideo.style.display = '';
+        previewPlaceholder.style.display = 'none';
+
+        // Start face cam if enabled
+        var faceCamPromise = useFace ? startFaceCam() : Promise.resolve(null);
+
+        faceCamPromise.then(function() {
+            // Collect all tracks for combined stream
+            var allTracks = [];
+            sStream.getVideoTracks().forEach(function(t) { allTracks.push(t); });
+
+            if (sStream.getAudioTracks().length > 0) {
+                sStream.getAudioTracks().forEach(function(t) { allTracks.push(t); });
+            }
+
+            // Add mic if enabled
+            if (useMic) {
+                navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } })
+                .then(function(mStream) {
+                    micStream = mStream;
+                    mStream.getAudioTracks().forEach(function(t) { allTracks.push(t); });
+                    beginCapture(allTracks, reqFps);
+                })
+                .catch(function(err) {
+                    console.warn('Mic not available:', err);
+                    showToast('Microphone not available, recording without mic', 'info');
+                    beginCapture(allTracks, reqFps);
+                });
+            } else {
+                beginCapture(allTracks, reqFps);
+            }
+        });
+    })
+    .catch(function(err) {
+        console.error('Screen capture error:', err);
+        if (err.name !== 'NotAllowedError') {
+            showToast('Screen capture failed: ' + err.message, 'error');
+        }
+        setUIState('ready');
+    });
+}
+
+function beginCapture(tracks, fps) {
+    // Create combined stream from tracks
+    if (combinedStream) { stopStream(combinedStream); }
+    combinedStream = new MediaStream(tracks);
+
+    var mimeType = getBestMimeType();
+    var options = { mimeType: mimeType };
+    if (mimeType.indexOf('vp9') !== -1 || mimeType.indexOf('vp8') !== -1) {
+        options.videoBitsPerSecond = 25000000; // 25 Mbps for high quality
+    }
+
+    try {
+        mediaRecorder = new MediaRecorder(combinedStream, options);
+    } catch(e) {
+        // Fallback without mime options
+        mediaRecorder = new MediaRecorder(combinedStream);
+    }
+
+    recordedChunks = [];
+
+    mediaRecorder.ondataavailable = function(e) {
+        if (e.data && e.data.size > 0) {
+            recordedChunks.push(e.data);
+        }
+    };
+
+    mediaRecorder.onstop = function() {
+        handleRecordingComplete();
+    };
+
+    // Handle user stopping share via browser UI
+    screenStream.getVideoTracks()[0].onended = function() {
+        if (isRecording) {
+            stopRecording();
+        }
+    };
+
+    mediaRecorder.start(100); // Collect data every 100ms
+    setUIState('recording');
+    startTimer();
+    playFunkRecordStart();
+    showToast('Recording started — ' + getResLabel() + ' at ' + getFpsLabel(), 'success');
+}
+
+// ---- PAUSE / RESUME ----
+function pauseRecording() {
+    if (!isRecording || isPaused) return;
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.pause();
+        elapsedBeforePause += (Date.now() - startTime);
+        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+        setUIState('paused');
+        playFunkPause();
+        showToast('Recording paused', 'info');
+    }
+}
+
+function resumeRecording() {
+    if (!isRecording || !isPaused) return;
+    if (mediaRecorder && mediaRecorder.state === 'paused') {
+        mediaRecorder.resume();
+        setUIState('recording');
+        startTimer();
+        playFunkRecordStart();
+        showToast('Recording resumed', 'success');
+    }
+}
+
+function togglePause() {
+    if (isPaused) {
+        resumeRecording();
+    } else {
+        pauseRecording();
+    }
+}
+
+// ---- STOP RECORDING ----
+function stopRecording() {
+    if (!isRecording) return;
+
+    var elapsed = stopTimer();
+
+    if (mediaRecorder && (mediaRecorder.state === 'recording' || mediaRecorder.state === 'paused')) {
+        // Store duration before stopping
+        window._lastRecordDuration = elapsed;
+        mediaRecorder.stop();
+    } else {
+        cleanupAfterStop();
+    }
+}
+
+function handleRecordingComplete() {
+    if (recordedChunks.length === 0) {
+        showToast('No data recorded', 'error');
+        cleanupAfterStop();
+        return;
+    }
+
+    var mimeType = mediaRecorder ? mediaRecorder.mimeType : 'video/webm';
+    var blob = new Blob(recordedChunks, { type: mimeType });
+    var blobUrl = URL.createObjectURL(blob);
+    var duration = window._lastRecordDuration || 0;
+
+    // Auto-generate name if empty
+    var vName = $('videoName').value.trim() || 'KSK_Recording_' + (videos.length + 1);
+    var vTitle = $('videoTitle').value.trim() || '';
+    var vDesc = $('videoDesc').value.trim() || '';
+
+    var videoEntry = {
+        id: Date.now(),
         name: vName,
         title: vTitle,
         desc: vDesc,
-        resolution: resLabels[res] || res,
-        fps: fpsLabels[fps] || fps + ' FPS',
-        duration: formatTime(elapsed),
-        size: blob.size,
+        blobUrl: blobUrl,
+        blob: blob,
         date: new Date().toLocaleString(),
-        url: url,
-        blob: blob
+        duration: duration,
+        res: getResLabel(),
+        fps: getFpsLabel(),
+        size: blob.size
     };
-    lib.unshift(record);
-    saveLibrary(lib);
-    /* Also save blob to IndexedDB for large files */
-    saveVideoToDB(record).then(function() {
-        renderLibrary();
-        updateStorageInfo();
-        showToast('Video "' + vName + '" saved successfully! (' + (blob.size / (1024 * 1024)).toFixed(1) + ' MB)', 'success');
-    }).catch(function(err) {
-        /* Fallback: just localStorage URL reference */
-        renderLibrary();
-        updateStorageInfo();
-        showToast('Video saved (URL reference only).', 'info');
-    });
-}
 
-/* ===== CLEANUP STREAMS ===== */
-function cleanupStreams() {
-    if (screenStream) { screenStream.getTracks().forEach(function(t) { t.stop(); }); screenStream = null; }
-    if (micStream) { micStream.getTracks().forEach(function(t) { t.stop(); }); micStream = null; }
-    if (faceStream) { faceStream.getTracks().forEach(function(t) { t.stop(); }); faceStream = null; }
-    combinedStream = null;
-    document.getElementById('faceVideo').srcObject = null;
-    document.getElementById('facePreview').classList.remove('visible');
-}
+    videos.unshift(videoEntry);
+    renderVideoList();
+    updateStorageStats();
 
-/* ===== UPDATE UI STATE ===== */
-function setUIState(state) {
-    var btnRec = document.getElementById('btnRecord');
-    var btnPause = document.getElementById('btnPause');
-    var btnStop = document.getElementById('btnStop');
-    var kskStart = document.getElementById('kskBtnStart');
-    var kskPause = document.getElementById('kskBtnPause');
-    var kskStop = document.getElementById('kskBtnStop');
-    var sDot = document.getElementById('statusDot');
-    var sText = document.getElementById('statusText');
-    var wrap = document.getElementById('previewWrap');
-    var recInd = document.getElementById('recIndicator');
-    var resBdg = document.getElementById('resBadge');
-    var brand = document.getElementById('kskBrand');
-    var recDot = document.getElementById('kskRecDot');
-    var kskFps = document.getElementById('kskFpsBadge');
+    // Clear form fields
+    $('videoName').value = '';
+    $('videoTitle').value = '';
+    $('videoDesc').value = '';
 
-    if (state === 'ready') {
-        btnRec.classList.remove('recording'); btnRec.disabled = false;
-        btnPause.disabled = true; btnStop.disabled = true;
-        kskStart.classList.remove('is-recording'); kskStart.disabled = false;
-        kskPause.disabled = true; kskStop.disabled = true;
-        sDot.className = 'status-dot ready'; sText.textContent = 'Ready to Record';
-        wrap.classList.remove('active', 'recording');
-        recInd.classList.remove('visible'); resBdg.classList.remove('visible');
-        brand.classList.remove('recording');
-        kskFps.style.display = 'none';
-        document.getElementById('kskMicInd').style.display = 'none';
-        document.getElementById('kskSysInd').style.display = 'none';
-        var kt = document.getElementById('kskTimer'); kt.textContent = '00:00:00'; kt.classList.add('not-recording');
-    } else if (state === 'recording') {
-        btnRec.classList.add('recording'); btnRec.disabled = true;
-        btnPause.disabled = false; btnStop.disabled = false;
-        kskStart.classList.add('is-recording'); kskStart.disabled = true;
-        kskPause.disabled = false; kskStop.disabled = false;
-        sDot.className = 'status-dot rec'; sText.textContent = 'Recording...';
-        wrap.classList.add('active', 'recording');
-        recInd.classList.add('visible'); resBdg.classList.add('visible');
-        brand.classList.add('recording');
-        var fpsVal = document.getElementById('fpsSelect').value;
-        kskFps.textContent = fpsLabels[fpsVal] || fpsVal + ' FPS';
-        kskFps.style.display = 'inline-block';
-    } else if (state === 'paused') {
-        btnRec.classList.add('recording'); btnRec.disabled = true;
-        btnPause.disabled = false; btnStop.disabled = false;
-        kskStart.classList.add('is-recording'); kskStart.disabled = true;
-        kskPause.disabled = false; kskStop.disabled = false;
-        sDot.className = 'status-dot paused'; sText.textContent = 'Paused';
-        wrap.classList.remove('recording');
-        brand.classList.remove('recording');
-        document.getElementById('recTime').style.opacity = '0.4';
-        document.getElementById('kskTimer').style.opacity = '0.4';
-    } else if (state === 'resumed') {
-        sDot.className = 'status-dot rec'; sText.textContent = 'Recording...';
-        wrap.classList.add('recording');
-        brand.classList.add('recording');
-        document.getElementById('recTime').style.opacity = '1';
-        document.getElementById('kskTimer').style.opacity = '1';
-    }
-}
-
-/* ===== OVERLAY CAMERA ===== */
-async function startOverlayCamera() {
-    try {
-        overlayCamStream = await navigator.mediaDevices.getUserMedia({
-            video: { width: { ideal: 3840 }, height: { ideal: 2160 }, frameRate: { ideal: 60 } },
-            audio: false
-        });
-        var vid = document.getElementById('kskCamVideo');
-        vid.srcObject = overlayCamStream;
-        vid.style.display = 'block';
-        document.getElementById('kskCamPlaceholder').style.display = 'none';
-        document.getElementById('kskCamPanel').classList.remove('no-cam');
-    } catch(e) {
-        try {
-            overlayCamStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-            var vid2 = document.getElementById('kskCamVideo');
-            vid2.srcObject = overlayCamStream;
-            vid2.style.display = 'block';
-            document.getElementById('kskCamPlaceholder').style.display = 'none';
-            document.getElementById('kskCamPanel').classList.remove('no-cam');
-        } catch(e2) { /* silent */ }
-    }
-}
-function stopOverlayCamera() {
-    if (overlayCamStream) { overlayCamStream.getTracks().forEach(function(t) { t.stop(); }); overlayCamStream = null; }
-    document.getElementById('kskCamVideo').srcObject = null;
-    document.getElementById('kskCamVideo').style.display = 'none';
-    document.getElementById('kskCamPlaceholder').style.display = '';
-    document.getElementById('kskCamPanel').classList.add('no-cam');
-}
-
-/* ===== START RECORDING ===== */
-async function startRecording() {
-    if (isRecording) return;
-    playFunkClick();
-    var vName = document.getElementById('videoName').value.trim();
-    var vTitle = document.getElementById('videoTitle').value.trim();
-    if (!vName) { showToast('Enter a Video Name first!', 'error'); document.getElementById('videoName').focus(); return; }
-    if (!vTitle) { showToast('Enter a Video Title first!', 'error'); document.getElementById('videoTitle').focus(); return; }
-    var lib = getLibrary();
-    if (lib.find(function(v) { return v.name === vName; })) { showToast('Video name already exists!', 'error'); return; }
-
-    try {
-        var resVal = document.getElementById('resSelect').value;
-        var parts = resVal.split('x');
-        var w = parseInt(parts[0]), h = parseInt(parts[1]);
-        var fps = parseInt(document.getElementById('fpsSelect').value);
-        var wantFace = document.getElementById('faceToggle').checked;
-        var wantAudio = document.getElementById('audioToggle').checked;
-        var wantSysAudio = document.getElementById('sysAudioToggle').checked;
-
-        /* Build constraints */
-        var videoConstraints = { width: { ideal: w }, height: { ideal: h }, frameRate: { ideal: fps } };
-        /* Mobile hint: prefer back camera if available */
-        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            videoConstraints.facingMode = 'environment';
-        }
-
-        screenStream = await navigator.mediaDevices.getDisplayMedia({ video: videoConstraints, audio: true });
-
-        var hasSysAudio = false;
-        if (screenStream.getAudioTracks().length > 0) {
-            hasSysAudio = wantSysAudio;
-            if (!wantSysAudio) screenStream.getAudioTracks().forEach(function(t) { t.stop(); });
-        } else if (wantSysAudio) { showToast('System audio not available for this share.', 'info'); }
-
-        /* Face cam for recording */
-        if (wantFace) {
-            try {
-                faceStream = await navigator.mediaDevices.getUserMedia({ video: { width: 320, height: 240, frameRate: 30 }, audio: false });
-                document.getElementById('faceVideo').srcObject = faceStream;
-                document.getElementById('facePreview').classList.add('visible');
-            } catch(e) { faceStream = null; }
-        }
-
-        /* Microphone */
-        var hasMic = false;
-        if (wantAudio) {
-            try { micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false }); hasMic = true; }
-            catch(e) { showToast('Microphone access denied.', 'error'); }
-        }
-
-        /* Combine */
-        var tracks = [];
-        screenStream.getVideoTracks().forEach(function(t) { tracks.push(t); });
-        if (hasSysAudio) screenStream.getAudioTracks().forEach(function(t) { tracks.push(t); });
-        if (hasMic) micStream.getAudioTracks().forEach(function(t) { tracks.push(t); });
-        combinedStream = new MediaStream(tracks);
-
-        document.getElementById('kskMicInd').style.display = hasMic ? 'flex' : 'none';
-        document.getElementById('kskSysInd').style.display = hasSysAudio ? 'flex' : 'none';
-
-        /* Bitrate based on res + fps */
-        selectedMime = findSupportedMime();
-        var bitrate = 4000000;
-        if (w >= 7680) bitrate = 80000000;
-        else if (w >= 6016) bitrate = 60000000;
-        else if (w >= 3840) bitrate = 40000000;
-        else if (w >= 2560) bitrate = 20000000;
-        else if (w >= 1920) bitrate = 10000000;
-        else if (w >= 1536) bitrate = 7000000;
-        else bitrate = 5000000;
-        /* Increase bitrate for high FPS */
-        if (fps >= 120) bitrate = Math.floor(bitrate * 1.8);
-        else if (fps >= 90) bitrate = Math.floor(bitrate * 1.4);
-
-        var opts = { videoBitsPerSecond: bitrate };
-        if (selectedMime) opts.mimeType = selectedMime;
-
-        mediaRecorder = new MediaRecorder(combinedStream, opts);
-        recordedChunks = [];
-
-        mediaRecorder.ondataavailable = function(e) { if (e.data && e.data.size > 0) recordedChunks.push(e.data); };
-        mediaRecorder.onstop = function() { autoSaveVideo(); cleanupStreams(); setUIState('ready'); isRecording = false; isPaused = false; stopTimer(); };
-
-        /* Handle user stopping share from browser UI */
-        screenStream.getVideoTracks()[0].onended = function() { if (isRecording) stopRecording(); };
-
-        mediaRecorder.start(1000);
-        isRecording = true;
-        isPaused = false;
-
-        playFunkRecordStart();
-
-        /* Preview */
-        var pv = document.getElementById('previewVideo');
-        pv.srcObject = screenStream;
-        pv.style.display = 'block';
-        document.getElementById('previewPlaceholder').style.display = 'none';
-
-        setUIState('recording');
-        updateResBadge();
-        startTimer();
-
-        /* Close mobile sidebar if open */
-        document.getElementById('sidebar').classList.remove('mobile-open');
-
-        showToast('Recording started at ' + (resLabels[resVal] || resVal) + ' ' + fpsLabels[String(fps)] + '!', 'success');
-    } catch(e) {
-        showToast('Could not start recording: ' + (e.message || e), 'error');
-        setUIState('ready');
-    }
-}
-
-/* ===== PAUSE / RESUME ===== */
-function togglePause() {
-    if (!isRecording) return;
-    playFunkPause();
-    if (!isPaused) {
-        mediaRecorder.pause();
-        isPaused = true;
-        elapsedBeforePause += (Date.now() - startTime);
-        setUIState('paused');
-        document.getElementById('btnPause').innerHTML = '<i class="fas fa-play"></i> Resume';
-        document.getElementById('kskBtnPause').querySelector('span').textContent = 'RESUME';
-        document.getElementById('kskBtnPause').querySelector('i').className = 'fas fa-play';
-        showToast('Recording paused.', 'info');
-    } else {
-        mediaRecorder.resume();
-        isPaused = false;
-        startTime = Date.now();
-        setUIState('resumed');
-        document.getElementById('btnPause').innerHTML = '<i class="fas fa-pause"></i> Pause';
-        document.getElementById('kskBtnPause').querySelector('span').textContent = 'PAUSE';
-        document.getElementById('kskBtnPause').querySelector('i').className = 'fas fa-pause';
-        showToast('Recording resumed.', 'info');
-    }
-}
-
-/* ===== STOP RECORDING ===== */
-function stopRecording() {
-    if (!isRecording) return;
+    cleanupAfterStop();
     playFunkRecordStop();
-    isRecording = false;
-    isPaused = false;
-    stopTimer();
-    if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+    showToast('Recording saved — ' + formatFileSize(blob.size), 'success');
+}
 
-    document.getElementById('previewVideo').srcObject = null;
-    document.getElementById('previewVideo').style.display = 'none';
-    document.getElementById('previewPlaceholder').style.display = '';
-    document.getElementById('recTime').style.opacity = '1';
-    document.getElementById('kskTimer').style.opacity = '1';
-    document.getElementById('btnPause').innerHTML = '<i class="fas fa-pause"></i> Pause';
-    document.getElementById('kskBtnPause').querySelector('span').textContent = 'PAUSE';
-    document.getElementById('kskBtnPause').querySelector('i').className = 'fas fa-pause';
+function cleanupAfterStop() {
+    stopStream(screenStream);
+    stopStream(micStream);
+    screenStream = null;
+    micStream = null;
+    combinedStream = null;
+    mediaRecorder = null;
+    recordedChunks = [];
 
+    // Hide preview (screen share ended)
+    previewVideo.srcObject = null;
+    previewVideo.style.display = 'none';
+    previewPlaceholder.style.display = '';
+
+    // Stop face cam
+    stopFaceCam();
+
+    resetTimerDisplay();
     setUIState('ready');
-    showToast('Recording stopped. Saving video...', 'info');
 }
 
-/* ===== TEST CAMERA ===== */
-async function testCamera() {
-    playFunkClick();
-    try {
-        var stream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 3840 }, height: { ideal: 2160 }, frameRate: { ideal: 60 } }, audio: false });
-        document.getElementById('faceVideo').srcObject = stream;
-        document.getElementById('facePreview').classList.add('visible');
-        showToast('Camera test active! Preview in bottom-right.', 'success');
-        setTimeout(function() {
-            stream.getTracks().forEach(function(t) { t.stop(); });
-            document.getElementById('faceVideo').srcObject = null;
-            document.getElementById('facePreview').classList.remove('visible');
-            showToast('Camera test ended.', 'info');
-        }, 5000);
-    } catch(e) { showToast('Camera access denied: ' + (e.message || e), 'error'); }
+// ---- FORMAT HELPERS ----
+function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    if (bytes < 1073741824) return (bytes / 1048576).toFixed(2) + ' MB';
+    return (bytes / 1073741824).toFixed(2) + ' GB';
 }
 
-/* ===== RENDER LIBRARY ===== */
-function renderLibrary(filter) {
-    var lib = getLibrary();
-    var list = document.getElementById('videoList');
-    if (filter) {
-        var f = filter.toLowerCase();
-        lib = lib.filter(function(v) {
-            return (v.name && v.name.toLowerCase().indexOf(f) !== -1) ||
-                   (v.title && v.title.toLowerCase().indexOf(f) !== -1) ||
-                   (v.desc && v.desc.toLowerCase().indexOf(f) !== -1);
+function formatDuration(ms) {
+    if (!ms || ms < 1000) return '0s';
+    var totalSec = Math.floor(ms / 1000);
+    var m = Math.floor(totalSec / 60);
+    var s = totalSec % 60;
+    if (m > 0) return m + 'm ' + s + 's';
+    return s + 's';
+}
+
+// ---- STORAGE STATS ----
+function updateStorageStats() {
+    var totalSize = 0;
+    videos.forEach(function(v) { totalSize += (v.size || 0); });
+    $('storageUsed').textContent = videos.length + ' video' + (videos.length !== 1 ? 's' : '') + ' saved';
+    $('storageSize').textContent = formatFileSize(totalSize) + ' used';
+    $('libCount').textContent = videos.length + ' video' + (videos.length !== 1 ? 's' : '');
+}
+
+// ---- RENDER VIDEO LIST ----
+function renderVideoList(filter) {
+    var filtered = videos;
+    if (filter && filter.trim()) {
+        var q = filter.toLowerCase();
+        filtered = videos.filter(function(v) {
+            return v.name.toLowerCase().indexOf(q) !== -1 ||
+                   v.title.toLowerCase().indexOf(q) !== -1 ||
+                   v.desc.toLowerCase().indexOf(q) !== -1;
         });
     }
-    if (lib.length === 0) {
-        list.innerHTML = '<div class="empty-state"><i class="fas fa-video-slash"></i><p>' + (filter ? 'No matching recordings found.' : 'No recordings yet. Hit Start to begin!') + '</p></div>';
+
+    if (filtered.length === 0) {
+        videoList.innerHTML = '';
+        var es = document.createElement('div');
+        es.className = 'empty-state';
+        es.innerHTML = '<i class="fas fa-video-slash"></i><p>' + (filter ? 'No matching videos found' : 'No recordings yet. Hit Start to begin!') + '</p><div class="ksk-credit-empty"><i class="fas fa-crown"></i> Made by KSK Games</div>';
+        videoList.appendChild(es);
         return;
     }
-    var html = '';
-    for (var i = 0; i < lib.length; i++) {
-        var v = lib[i];
-        var sizeStr = v.size ? (v.size / (1024 * 1024)).toFixed(1) + ' MB' : 'N/A';
-        html += '<div class="video-card" data-name="' + v.name + '">' +
-            '<div class="video-card-top"><div class="video-card-name">' + escHtml(v.name) + '</div><div class="video-card-date">' + escHtml(v.date || '') + '</div></div>' +
+
+    videoList.innerHTML = '';
+    filtered.forEach(function(v) {
+        var card = document.createElement('div');
+        card.className = 'video-card';
+        card.setAttribute('data-id', v.id);
+        card.innerHTML =
+            '<div class="video-card-top">' +
+                '<div class="video-card-name" title="' + escHtml(v.name) + '">' + escHtml(v.name) + '</div>' +
+                '<div class="video-card-date">' + escHtml(v.date) + '</div>' +
+            '</div>' +
             (v.title ? '<div class="video-card-title">' + escHtml(v.title) + '</div>' : '') +
             (v.desc ? '<div class="video-card-desc">' + escHtml(v.desc) + '</div>' : '') +
             '<div class="video-card-meta">' +
-                '<span><i class="fas fa-desktop"></i> ' + escHtml(v.resolution || 'N/A') + '</span>' +
-                '<span><i class="fas fa-tachometer-alt"></i> ' + escHtml(v.fps || 'N/A') + '</span>' +
-                '<span><i class="fas fa-clock"></i> ' + escHtml(v.duration || 'N/A') + '</span>' +
-                '<span><i class="fas fa-hdd"></i> ' + sizeStr + '</span>' +
+                '<span><i class="fas fa-clock"></i> ' + formatDuration(v.duration) + '</span>' +
+                '<span><i class="fas fa-expand"></i> ' + escHtml(v.res) + '</span>' +
+                '<span><i class="fas fa-tachometer-alt"></i> ' + escHtml(v.fps) + '</span>' +
+                '<span><i class="fas fa-weight-hanging"></i> ' + formatFileSize(v.size) + '</span>' +
             '</div>' +
+            '<div class="video-card-ksk-credit"><i class="fas fa-crown"></i> Recorded by KSK Games</div>' +
             '<div class="video-card-actions">' +
-                '<button class="vc-btn vc-play" onclick="playVideo(\'' + escAttr(v.name) + '\')"><i class="fas fa-play"></i> Play</button>' +
-                '<button class="vc-btn vc-dl" onclick="downloadVideo(\'' + escAttr(v.name) + '\')"><i class="fas fa-download"></i> Download</button>' +
-                '<button class="vc-btn vc-del" onclick="deleteVideo(\'' + escAttr(v.name) + '\')"><i class="fas fa-trash"></i> Delete</button>' +
-            '</div></div>';
+                '<button class="vc-btn vc-play" data-action="play" data-id="' + v.id + '"><i class="fas fa-play"></i> Play</button>' +
+                '<button class="vc-btn vc-dl" data-action="download" data-id="' + v.id + '"><i class="fas fa-download"></i> Download</button>' +
+                '<button class="vc-btn vc-del" data-action="delete" data-id="' + v.id + '"><i class="fas fa-trash"></i> Delete</button>' +
+            '</div>';
+        videoList.appendChild(card);
+    });
+}
+
+function escHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
+
+// ---- VIDEO LIST CLICK HANDLER (delegation) ----
+videoList.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    var action = btn.getAttribute('data-action');
+    var id = parseInt(btn.getAttribute('data-id'));
+    var video = videos.find(function(v) { return v.id === id; });
+    if (!video) return;
+
+    if (action === 'play') {
+        playVideoInModal(video);
+    } else if (action === 'download') {
+        downloadVideo(video);
+    } else if (action === 'delete') {
+        deleteVideo(id);
     }
-    list.innerHTML = html;
-}
-function escHtml(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
-function escAttr(s) { return (s || '').replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
-
-/* ===== PLAY VIDEO ===== */
-async function playVideo(name) {
     playFunkClick();
-    try {
-        var record = await getVideoFromDB(name);
-        if (record && record.blob) {
-            var url = URL.createObjectURL(record.blob);
-            showPlayModal(url, record);
-            return;
-        }
-    } catch(e) { /* fallback */ }
-    /* Fallback: check localStorage url */
-    var lib = getLibrary();
-    var v = lib.find(function(r) { return r.name === name; });
-    if (v && v.url) { showPlayModal(v.url, v); }
-    else { showToast('Video data not found. It may have been recorded in a different session.', 'error'); }
-}
-function showPlayModal(url, v) {
-    document.getElementById('modalVideo').src = url;
-    document.getElementById('modalName').textContent = v.name || '';
-    document.getElementById('modalTitle').textContent = v.title || '';
-    document.getElementById('modalDesc').textContent = v.desc || '';
-    var sizeStr = v.size ? (v.size / (1024 * 1024)).toFixed(1) + ' MB' : 'N/A';
-    document.getElementById('modalMeta').innerHTML =
-        '<span><i class="fas fa-desktop"></i> ' + escHtml(v.resolution || 'N/A') + '</span>' +
-        '<span><i class="fas fa-tachometer-alt"></i> ' + escHtml(v.fps || 'N/A') + '</span>' +
-        '<span><i class="fas fa-clock"></i> ' + escHtml(v.duration || 'N/A') + '</span>' +
-        '<span><i class="fas fa-hdd"></i> ' + sizeStr + '</span>' +
-        '<span><i class="fas fa-calendar"></i> ' + escHtml(v.date || '') + '</span>';
-    document.getElementById('playModal').classList.add('visible');
+});
+
+// ---- PLAY VIDEO IN MODAL ----
+function playVideoInModal(video) {
+    // Revoke old modal blob URL if any
+    if (modalVideo._blobUrl) {
+        URL.revokeObjectURL(modalVideo._blobUrl);
+    }
+
+    // Create a fresh blob URL from the stored blob
+    var freshUrl = URL.createObjectURL(video.blob);
+    modalVideo._blobUrl = freshUrl;
+    modalVideo.src = freshUrl;
+    modalVideo.load();
+
+    $('modalName').textContent = video.name;
+    $('modalTitle').textContent = video.title || 'No title';
+    $('modalDesc').textContent = video.desc || 'No description';
+    $('modalMeta').innerHTML =
+        '<span><i class="fas fa-clock"></i> ' + formatDuration(video.duration) + '</span>' +
+        '<span><i class="fas fa-expand"></i> ' + escHtml(video.res) + '</span>' +
+        '<span><i class="fas fa-tachometer-alt"></i> ' + escHtml(video.fps) + '</span>' +
+        '<span><i class="fas fa-weight-hanging"></i> ' + formatFileSize(video.size) + '</span>' +
+        '<span><i class="fas fa-calendar"></i> ' + escHtml(video.date) + '</span>';
+
+    playModal.classList.add('visible');
+    // Ensure play starts
+    setTimeout(function() {
+        modalVideo.play().catch(function() {});
+    }, 200);
 }
 
-/* ===== DOWNLOAD VIDEO ===== */
-async function downloadVideo(name) {
-    playFunkClick();
-    try {
-        var record = await getVideoFromDB(name);
-        if (record && record.blob) { triggerDownload(record.blob, name); return; }
-    } catch(e) { /* fallback */ }
-    var lib = getLibrary();
-    var v = lib.find(function(r) { return r.name === name; });
-    if (v && v.url) {
-        try {
-            var resp = await fetch(v.url);
-            var blob = await resp.blob();
-            triggerDownload(blob, name);
-        } catch(e) { showToast('Cannot download — data expired. Re-record the video.', 'error'); }
-    } else { showToast('Video data not found.', 'error'); }
+function closePlayModal() {
+    modalVideo.pause();
+    if (modalVideo._blobUrl) {
+        URL.revokeObjectURL(modalVideo._blobUrl);
+        modalVideo._blobUrl = null;
+    }
+    modalVideo.removeAttribute('src');
+    modalVideo.load();
+    playModal.classList.remove('visible');
 }
-function triggerDownload(blob, name) {
-    var ext = blob.type.indexOf('mp4') !== -1 ? 'mp4' : 'webm';
+
+modalCloseBtn.addEventListener('click', function() { closePlayModal(); playFunkClick(); });
+playModal.addEventListener('click', function(e) {
+    if (e.target === playModal) { closePlayModal(); playFunkClick(); }
+});
+
+// ---- DOWNLOAD VIDEO ----
+function downloadVideo(video) {
+    var ext = 'webm';
+    if (video.blob && video.blob.type && video.blob.type.indexOf('mp4') !== -1) ext = 'mp4';
     var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = name + '.' + ext;
+    a.href = video.blobUrl;
+    a.download = video.name + '.' + ext;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    showToast('Downloading ' + name + '.' + ext + '...', 'success');
+    showToast('Downloading ' + video.name, 'success');
 }
 
-/* ===== DELETE VIDEO ===== */
-async function deleteVideo(name) {
+// ---- DELETE VIDEO ----
+function deleteVideo(id) {
+    var idx = videos.findIndex(function(v) { return v.id === id; });
+    if (idx === -1) return;
+    // Revoke blob URL to free memory
+    if (videos[idx].blobUrl) URL.revokeObjectURL(videos[idx].blobUrl);
+    videos.splice(idx, 1);
+    renderVideoList(searchInput.value);
+    updateStorageStats();
+    showToast('Video deleted', 'info');
+}
+
+// ---- SEARCH ----
+searchInput.addEventListener('input', function() {
+    renderVideoList(this.value);
+});
+
+// ---- TEST CAM ----
+btnTestCam.addEventListener('click', function() {
     playFunkClick();
-    var lib = getLibrary();
-    lib = lib.filter(function(v) { return v.name !== name; });
-    saveLibrary(lib);
-    try { await deleteVideoFromDB(name); } catch(e) { /* ok */ }
-    renderLibrary();
-    updateStorageInfo();
-    showToast('Video "' + name + '" deleted.', 'info');
-}
-
-/* ===== EVENT LISTENERS ===== */
-document.getElementById('kskBtnStart').addEventListener('click', startRecording);
-document.getElementById('kskBtnPause').addEventListener('click', togglePause);
-document.getElementById('kskBtnStop').addEventListener('click', stopRecording);
-document.getElementById('btnRecord').addEventListener('click', startRecording);
-document.getElementById('btnPause').addEventListener('click', togglePause);
-document.getElementById('btnStop').addEventListener('click', stopRecording);
-document.getElementById('btnTestCam').addEventListener('click', testCamera);
-
-document.getElementById('modalCloseBtn').addEventListener('click', function() {
-    document.getElementById('playModal').classList.remove('visible');
-    document.getElementById('modalVideo').pause();
-    document.getElementById('modalVideo').src = '';
-});
-document.getElementById('playModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        this.classList.remove('visible');
-        document.getElementById('modalVideo').pause();
-        document.getElementById('modalVideo').src = '';
+    if (faceStream) {
+        stopFaceCam();
+        showToast('Face cam stopped', 'info');
+        return;
     }
+    startFaceCam().then(function(stream) {
+        if (stream) {
+            showToast('Face cam test active', 'success');
+        } else {
+            showToast('Face cam not available on this device', 'error');
+        }
+    });
 });
 
-document.getElementById('searchInput').addEventListener('input', function() {
-    renderLibrary(this.value.trim());
+// ---- BUTTON EVENT BINDINGS ----
+// Floating overlay buttons
+kskBtnStart.addEventListener('click', function() {
+    playFunkClick();
+    startRecording();
+});
+kskBtnPause.addEventListener('click', function() {
+    togglePause();
+});
+kskBtnStop.addEventListener('click', function() {
+    playFunkClick();
+    stopRecording();
 });
 
-/* ===== COLLAPSE OVERLAY ===== */
-document.getElementById('kskCollapseBtn').addEventListener('click', function(e) {
-    e.stopPropagation();
-    var overlay = document.getElementById('kskOverlay');
-    overlay.classList.toggle('collapsed');
-    var icon = this.querySelector('i');
-    icon.className = overlay.classList.contains('collapsed') ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+// Main area buttons
+btnRecord.addEventListener('click', function() {
+    playFunkClick();
+    startRecording();
+});
+btnPause.addEventListener('click', function() {
+    togglePause();
+});
+btnStop.addEventListener('click', function() {
+    playFunkClick();
+    stopRecording();
 });
 
-/* ===== MOBILE SIDEBAR TOGGLE ===== */
-document.getElementById('mobileSidebarBtn').addEventListener('click', function() {
-    document.getElementById('sidebar').classList.toggle('mobile-open');
-});
-/* Close sidebar when clicking outside on mobile */
-document.addEventListener('click', function(e) {
-    var sidebar = document.getElementById('sidebar');
-    var btn = document.getElementById('mobileSidebarBtn');
-    if (sidebar.classList.contains('mobile-open') && !sidebar.contains(e.target) && !btn.contains(e.target)) {
-        sidebar.classList.remove('mobile-open');
-    }
-});
-
-/* ===== KEYBOARD SHORTCUTS ===== */
+// ---- KEYBOARD SHORTCUTS ----
 document.addEventListener('keydown', function(e) {
+    // Don't trigger if typing in inputs
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
-    if (e.key === 'r' || e.key === 'R') { if (!isRecording) startRecording(); }
-    else if (e.key === 'p' || e.key === 'P') { if (isRecording) togglePause(); }
-    else if (e.key === 's' || e.key === 'S') { if (isRecording) stopRecording(); }
-    else if (e.key === 'Escape') {
-        var modal = document.getElementById('playModal');
-        if (modal.classList.contains('visible')) {
-            modal.classList.remove('visible');
-            document.getElementById('modalVideo').pause();
-            document.getElementById('modalVideo').src = '';
+    if (e.key === 'r' || e.key === 'R') {
+        playFunkClick();
+        startRecording();
+    } else if (e.key === 'p' || e.key === 'P') {
+        togglePause();
+    } else if (e.key === 's' || e.key === 'S') {
+        playFunkClick();
+        stopRecording();
+    } else if (e.key === 'Escape') {
+        if (playModal.classList.contains('visible')) {
+            closePlayModal();
         }
     }
 });
 
-/* ===== DRAGGABLE OVERLAY ===== */
+// ---- OVERLAY DRAG ----
 (function() {
-    var el = document.getElementById('kskOverlay');
-    var handle = document.getElementById('kskBrand');
     var isDragging = false;
-    var startX = 0, startY = 0, startLeft = 0, startTop = 0;
+    var startX = 0, startY = 0, origLeft = 0, origTop = 0;
 
-    function onStart(e) {
-        if (e.target.closest('.ksk-collapse-btn') || e.target.closest('.ksk-ctrl-btn')) return;
+    kskBrand.addEventListener('mousedown', function(e) {
+        if (e.target.closest('.ksk-collapse-btn')) return;
         isDragging = true;
-        var touch = e.touches ? e.touches[0] : e;
+        startX = e.clientX;
+        startY = e.clientY;
+        var rect = kskOverlay.getBoundingClientRect();
+        origLeft = rect.left;
+        origTop = rect.top;
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        var dx = e.clientX - startX;
+        var dy = e.clientY - startY;
+        var newLeft = Math.max(0, Math.min(window.innerWidth - 200, origLeft + dx));
+        var newTop = Math.max(0, Math.min(window.innerHeight - 60, origTop + dy));
+        kskOverlay.style.left = newLeft + 'px';
+        kskOverlay.style.top = newTop + 'px';
+        kskOverlay.style.right = 'auto';
+        kskOverlay.style.bottom = 'auto';
+    });
+
+    document.addEventListener('mouseup', function() {
+        isDragging = false;
+    });
+
+    // Touch drag
+    kskBrand.addEventListener('touchstart', function(e) {
+        if (e.target.closest('.ksk-collapse-btn')) return;
+        isDragging = true;
+        var touch = e.touches[0];
         startX = touch.clientX;
         startY = touch.clientY;
-        var rect = el.getBoundingClientRect();
-        startLeft = rect.left;
-        startTop = rect.top;
-        el.style.transition = 'none';
-    }
-    function onMove(e) {
+        var rect = kskOverlay.getBoundingClientRect();
+        origLeft = rect.left;
+        origTop = rect.top;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function(e) {
         if (!isDragging) return;
-        e.preventDefault();
-        var touch = e.touches ? e.touches[0] : e;
+        var touch = e.touches[0];
         var dx = touch.clientX - startX;
         var dy = touch.clientY - startY;
-        var newLeft = startLeft + dx;
-        var newTop = startTop + dy;
-        /* Clamp within viewport */
-        var ew = el.offsetWidth, eh = el.offsetHeight;
-        newLeft = Math.max(0, Math.min(window.innerWidth - ew, newLeft));
-        newTop = Math.max(0, Math.min(window.innerHeight - eh, newTop));
-        el.style.left = newLeft + 'px';
-        el.style.top = newTop + 'px';
-        el.style.right = 'auto';
-        el.style.bottom = 'auto';
-    }
-    function onEnd() {
-        isDragging = false;
-        el.style.transition = '';
-    }
+        var newLeft = Math.max(0, Math.min(window.innerWidth - 200, origLeft + dx));
+        var newTop = Math.max(0, Math.min(window.innerHeight - 60, origTop + dy));
+        kskOverlay.style.left = newLeft + 'px';
+        kskOverlay.style.top = newTop + 'px';
+        kskOverlay.style.right = 'auto';
+        kskOverlay.style.bottom = 'auto';
+    }, { passive: true });
 
-    handle.addEventListener('mousedown', onStart);
-    handle.addEventListener('touchstart', onStart, { passive: false });
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('touchmove', onMove, { passive: false });
-    document.addEventListener('mouseup', onEnd);
-    document.addEventListener('touchend', onEnd);
+    document.addEventListener('touchend', function() {
+        isDragging = false;
+    });
 })();
 
-/* ===== FACE TOGGLE: START/STOP OVERLAY CAM ===== */
-document.getElementById('faceToggle').addEventListener('change', function() {
-    if (this.checked) { startOverlayCamera(); playFunkClick(); }
-    else { stopOverlayCamera(); playFunkClick(); }
+// ---- COLLAPSE OVERLAY ----
+ $('kskCollapseBtn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    kskOverlay.classList.toggle('collapsed');
+    var icon = this.querySelector('i');
+    if (kskOverlay.classList.contains('collapsed')) {
+        icon.className = 'fas fa-chevron-up';
+    } else {
+        icon.className = 'fas fa-chevron-down';
+    }
+    playFunkClick();
 });
 
-/* ===== INIT ===== */
-(function init() {
-    updateResBadge();
-    updateFpsBadge();
-    renderLibrary();
-    updateStorageInfo();
-    /* Auto-start overlay camera if face toggle is on */
-    if (document.getElementById('faceToggle').checked) {
-        startOverlayCamera();
+// ---- MOBILE SIDEBAR TOGGLE ----
+ $('mobileSidebarBtn').addEventListener('click', function() {
+    var sb = $('sidebar');
+    sb.classList.toggle('mobile-open');
+    playFunkClick();
+});
+
+// Close sidebar on mobile when clicking outside
+document.addEventListener('click', function(e) {
+    var sb = $('sidebar');
+    if (sb.classList.contains('mobile-open') && !sb.contains(e.target) && e.target !== $('mobileSidebarBtn') && !$('mobileSidebarBtn').contains(e.target)) {
+        sb.classList.remove('mobile-open');
     }
-})();
+});
+
+// ---- INIT ----
+updateResBadge();
+updateFpsBadge();
+renderVideoList();
+updateStorageStats();
 </script>
 </body>
 </html>
